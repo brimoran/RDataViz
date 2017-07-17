@@ -3,11 +3,31 @@ Examples of data viz using R with an emphasis on good practice in visual design.
 
 All examples assume that R Studio is being used.
 
-All examples are cobbled together from the work of others found on the web.  I'll try to attribute the source of code used but let me know if I miss this. 
+## Acknowledgements
 
-##Tips
+The code is generally based on the work of others found on the web.  I have tried to attribute the sources used but let me know if you feel I should credit your work.
+
+My thanks to the R core team and to the authors of the libraries used in the examples:
+
+###ggplot2
+
+###ggmap
+
+###ggthemes
+
+###scales
+
+###treemapify
+
+
+
+
+
+## General Tips
 
 ###Suppress scientific notation
+
+Often it is useful to suppress scientific notation.  To do so use the following code in your R script prior to plotting:
 
 ```r
 options(scipen=999) # supress scientific notation
@@ -61,7 +81,7 @@ colfunc(20) # print 20 colours in the range
 
 ###Violin plot
 
-A violin plot is similar to a no plot 
+A violin plot is a variation on a box plot.
 
 ##Sankey diagram
 
