@@ -10,16 +10,36 @@ All examples assume that R Studio is being used.
 
 ##Column / Bar chart
 
+
+
 ##Scatter plot
+
+
 
 ##Histogram
 
+
+
 ##Sankey diagram
+
+
 
 ##Maps
 
+###Points
+
+###Bubbles
+
+###Density
+
+
+
 ##Bullet chart
 
+
+
 ##Treemap
+
+
 
 
