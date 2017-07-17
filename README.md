@@ -64,7 +64,7 @@ colfunc(20) # print 20 colours in the range
 ## Column / Bar chart
 
 
-### Dodging
+### Grouping
 
 
 ## Scatter plot
