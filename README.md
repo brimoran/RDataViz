@@ -9,15 +9,15 @@ The code is generally based on the work of others found on the web.  I have trie
 
 My thanks to the R core team and to the authors of the libraries used in the examples:
 
-###ggplot2
+### ggplot2
 
-###ggmap
+### ggmap
 
-###ggthemes
+### ggthemes
 
-###scales
+### scales
 
-###treemapify
+### treemapify
 
 
 
@@ -25,7 +25,7 @@ My thanks to the R core team and to the authors of the libraries used in the exa
 
 ## General Tips
 
-###Suppress scientific notation
+### Suppress scientific notation
 
 Often it is useful to suppress scientific notation.  To do so use the following code in your R script prior to plotting:
 
@@ -33,9 +33,9 @@ Often it is useful to suppress scientific notation.  To do so use the following 
 options(scipen=999) # supress scientific notation
 ```
 
-###Working with colour
+### Working with colour
 
-####Getting a range of colours
+#### Getting a range of colours
 
 A quick method to get a range of colours:
 
@@ -58,50 +58,50 @@ colfunc(20) # print 20 colours in the range
 
 
 
-##Line chart
+## Line chart
 
 
 
 
-##Column / Bar chart
+## Column / Bar chart
 
 
-###Dodging
+### Dodging
 
 
-##Scatter plot
+## Scatter plot
 
 
 
-##Histogram
+## Histogram
 
 
-##Boxplot
+## Boxplot
 
 
-###Violin plot
+### Violin plot
 
 A violin plot is a variation on a box plot.
 
-##Sankey diagram
+## Sankey diagram
+
+
+## Bullet chart
 
 
 
-##Maps
-
-###Points
-
-###Bubbles
-
-###Density
+## Treemap
 
 
+## Maps
 
-##Bullet chart
+### Points
+
+### Bubbles
+
+### Density
 
 
-
-##Treemap
 
 
 
