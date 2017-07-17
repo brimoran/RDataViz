@@ -40,8 +40,6 @@ options(scipen=999) # supress scientific notation
 A quick method to get a range of colours:
 
 ```r
-# Getting a range of colours
-
 colfunc <- colorRampPalette(c("#8E0A26", "white")) # Create colour palette between two colours
 colfunc(20) # print 20 colours in the range
 ```
