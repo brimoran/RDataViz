@@ -1,2 +1,2 @@
 # RDataViz
-A collection of data viz in R
+A collection of data viz in R.
