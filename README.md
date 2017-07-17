@@ -91,6 +91,8 @@ A violin plot is a variation on a box plot.
 ## Treemap
 
 
+## Gantt chart
+
 ## Maps
 
 ### Points
