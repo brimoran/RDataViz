@@ -41,6 +41,7 @@ A quick method to get a range of colours:
 
 ```r
 colfunc <- colorRampPalette(c("#8E0A26", "white")) # Create colour gradient between two colours
+colfunc(6) # print 6 colours in the range
 colfunc(20) # print 20 colours in the range
 ```
 
@@ -60,14 +61,20 @@ colfunc(20) # print 20 colours in the range
 
 
 
-
 ## Column / Bar chart
 
 
 ### Grouping
 
 
+### Gantt chart
+
+
 ## Scatter plot
+
+
+### Fitting scatter plots
+
 
 
 
@@ -90,7 +97,6 @@ A violin plot is a variation on a box plot.
 
 ## Treemap
 
-## Gantt chart
 
 ## Gantt chart
 
@@ -101,8 +107,6 @@ A violin plot is a variation on a box plot.
 ### Bubbles
 
 ### Density
-
-
 
 
 
