@@ -51,6 +51,18 @@ colfunc(20) # print 20 colours in the range
 
 #### Colour blind safe colours
 
+The ggthemes library provides good colour blind friendly palletes based on those provided by Tableau.  To view this pallete use:
+
+```
+library("scales")
+show_col(tableau_color_pal('colorblind10')(10))
+```
+
+To use in your plots, add the following line as part of your ggplot:
+
+```
+scale_colour_tableau(name = "","colorblind10") # use Tableau colour blind pallete
+```
 
 
 ### Working with dates
