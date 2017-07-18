@@ -9,16 +9,35 @@ The code is generally based on the work of others found on the web.  I have trie
 
 My thanks to the R core team and to the authors of the libraries used in the examples:
 
+### R
+
+R Core Team (2017). R: A language and environment for statistical computing. R
+  Foundation for Statistical Computing, Vienna, Austria. https://www.R-project.org/
+
 ### ggplot2
+
+H. Wickham. ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York, 2009. http://ggplot2.org
 
 ### ggmap
 
+D. Kahle and H. Wickham. ggmap: Spatial Visualization with ggplot2. The R Journal, 5(1), 144-161. http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf
+
 ### ggthemes
+
+Jeffrey B. Arnold (2017). ggthemes: Extra Themes, Scales and Geoms for 'ggplot2'. R
+  package version 3.4.0. https://CRAN.R-project.org/package=ggthemes
+
+### googleVis
+
+Markus Gesmann and Diego de Castillo. Using the Google Visualisation API with R. The R Journal, 3(2):40-44, December 2011.
 
 ### scales
 
+Hadley Wickham (2016). scales: Scale Functions for Visualization. R package version 0.4.1 https://CRAN.R-project.org/package=scales
+
 ### treemapify
 
+David Wilkins (2017). treemapify: Draw treemaps easily. R package version 2.2.2. https://github.com/wilkox/treemapify
 
 
 
@@ -53,14 +72,14 @@ colfunc(20) # print 20 colours in the range
 
 The ggthemes library provides good colour blind friendly palletes based on those provided by Tableau.  To view this pallete use:
 
-```
+```r
 library("scales")
 show_col(tableau_color_pal('colorblind10')(10))
 ```
 
 To use in your plots, add the following line as part of your ggplot:
 
-```
+```r
 scale_colour_tableau(name = "","colorblind10") # use Tableau colour blind pallete
 ```
 
