@@ -40,8 +40,6 @@ Hadley Wickham (2016). scales: Scale Functions for Visualization. R package vers
 David Wilkins (2017). treemapify: Draw treemaps easily. R package version 2.2.2. https://github.com/wilkox/treemapify
 
 
-
-
 ## General Tips
 
 ### Suppress scientific notation
@@ -128,8 +126,6 @@ A violin plot is a variation on a box plot.
 
 ## Treemap
 
-
-## Gantt chart
 
 ## Maps
 
