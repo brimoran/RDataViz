@@ -1,5 +1,6 @@
 # RDataViz
-Examples of data viz using R with an emphasis on good practice in visual design.
+
+Examples of data viz using R with an emphasis on good practice in visual design for a 'corporate' rather than scientific audience.
 
 All examples assume that R Studio is being used.
 
@@ -7,9 +8,15 @@ All examples assume that R Studio is being used.
 
 The code is generally based on the work of others found on the web.  I have tried to attribute the sources used but let me know if you feel I should credit your work.
 
-My thanks to the R core team and to the authors of the libraries used in the examples:
+### Recommended reading
+
+Tufte, Edward R (1983), The Visual Display of Quantitative Information.
+
+Few, Stephen (2012), Show Me The Numbers.
 
 ### R
+
+My thanks to the R core team and to the authors of the libraries used in the examples:
 
 R Core Team (2017). R: A language and environment for statistical computing. R
   Foundation for Statistical Computing, Vienna, Austria. https://www.R-project.org/
@@ -44,14 +51,11 @@ David Wilkins (2017). treemapify: Draw treemaps easily. R package version 2.2.2.
 
 ### Suppress scientific notation
 
-Often it is useful to suppress scientific notation.  To do so use the following code in your R script prior to plotting:
+We are producing data viz for business here and so it is useful to suppress scientific notation.  To do so use the following code in your R script prior to plotting:
 
 ```r
 options(scipen=999) # supress scientific notation
 ```
-
-### Commas in scales
-
 
 ### Working with colour
 
@@ -89,6 +93,9 @@ To use in your plots, add the following line as part of your ggplot:
 scale_colour_tableau(name = "","colorblind10") # use Tableau colour blind pallete
 ```
 
+### Commas in scales
+
+
 
 ### Working with dates
 
@@ -107,6 +114,10 @@ scale_colour_tableau(name = "","colorblind10") # use Tableau colour blind pallet
 #### Plotting to file
 
 PDF is preferred.
+
+
+## Tables
+
 
 ## Line chart
 
