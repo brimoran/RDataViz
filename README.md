@@ -40,7 +40,7 @@ Hadley Wickham (2016). scales: Scale Functions for Visualization. R package vers
 David Wilkins (2017). treemapify: Draw treemaps easily. R package version 2.2.2. https://github.com/wilkox/treemapify
 
 
-## General Tips
+## Data viz: general tips
 
 ### Suppress scientific notation
 
@@ -49,6 +49,9 @@ Often it is useful to suppress scientific notation.  To do so use the following 
 ```r
 options(scipen=999) # supress scientific notation
 ```
+
+### Commas in scales
+
 
 ### Working with colour
 
@@ -64,6 +67,11 @@ colfunc(20) # print 20 colours in the range
 
 #### Defining colour scales
 
+
+##### Continuous scales
+
+
+##### Discrete scales
 
 
 #### Colour blind safe colours
@@ -84,7 +92,21 @@ scale_colour_tableau(name = "","colorblind10") # use Tableau colour blind pallet
 
 ### Working with dates
 
+#### DMY
 
+
+#### YMD
+
+
+### Exporting plots
+
+
+#### Using knitr 
+
+
+#### Plotting to file
+
+PDF is preferred.
 
 ## Line chart
 
@@ -122,7 +144,7 @@ A violin plot is a variation on a box plot.
 
 ## Bullet chart
 
-
+Concept by Stephen Few, R Implementation by Simon Müller.
 
 ## Treemap
 
