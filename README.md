@@ -51,6 +51,42 @@ David Wilkins (2017). treemapify: Draw treemaps easily. R package version 2.2.2.
 
 ### R tips
 
+#### Working directory
+
+For simplicity, I would suggest keeping your R scripts and data sources in the same directory.  If you do, the following code can be used to set your working directory to the location of the R script and will help ensure that your work is easily portable for others:
+
+```r
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path)) # set working directory
+```
+
+*Note*: this requires R studio to be used and the rstudioapi library to have been installed.
+
+#### Loading libraries
+
+A nice solution to help ensure that your code can be shared easily with colleagues is to install necessary packages on the fly if they are not already present in another R installation.  The following for loop example achieves this:
+
+```r
+#Load required libraries (installing them if necessary)
+for (package in c('ggplot2', 'ggthemes','ggmap', 'scales')) {
+  if (!require(package, character.only=T, quietly=T)) {
+    install.packages(package)
+    library(package, character.only=T)
+  }
+}
+```
+
+In this case ggplot2, ggthemes, ggmap and scales will be loaded or installed and then loaded if not already present.
+
+#### Loading data
+
+The examples given here use R's in-built datasets to ensure reproducibility.
+
+Each example loads a dataset as "data".  To replace this with your own csv data, comment out the existing line loading the data and use the following code instead:
+
+```r
+data <- read.csv("YOURFILENAME.csv",header=TRUE) # Read csv file.
+```
+
 #### Working with dates
 
 You need to be explicit about date formats in R.  Use as.Date to tell R to change a field in your dataframe to a particular date format. 
@@ -60,7 +96,7 @@ You need to be explicit about date formats in R.  Use as.Date to tell R to chang
 e.g. date in format dd/mm/yyyy:
 
 ```r
-data$YOURFIELDNAME<- as.Date(data$YOURFIELDNAME, "%d/%m/%Y") # tranform a field name to dd-mm-yyyy change YOURFIELDNAME
+data$YOURFIELDNAME<- as.Date(data$YOURFIELDNAME, "%d/%m/%Y") # transform a field name to dd/mm/yyyy change YOURFIELDNAME
 ```
 
 
@@ -69,7 +105,7 @@ data$YOURFIELDNAME<- as.Date(data$YOURFIELDNAME, "%d/%m/%Y") # tranform a field 
 e.g. date in format yyyy-mm-dd:
 
 ```r
-data$Year<- as.Date(data$Year, "%Y-%m-%d") # Change YOURFIELDNAME accordingly
+data$YOURFIELDNAME<- as.Date(data$YOURFIELDNAME, "%Y-%m-%d") # transform a field name to yyyy-mm-dd change YOURFIELDNAME
 ```
 
 Note the substitution of '/' with '-' in this example.
@@ -80,24 +116,6 @@ We are producing data viz for business here and so it is useful to suppress scie
 
 ```r
 options(scipen=999) # supress scientific notation
-```
-
-
-#### Commas in scales
-
-Use the scales library to easily add commas to the axis of plots that need them.
-
-
-##### X axis
-
-```r
-scale_x_continuous(labels = comma) # Assumes scales library is loaded
-```
-
-##### X axis
-
-```r
-scale_y_continuous(labels = comma) # Assumes scales library is loaded
 ```
 
 
@@ -177,6 +195,7 @@ dev.off() # output file
 Knitr documents are written in Markdown or in LaTeX.  Knitr enables export to a variety of file formats via Pandoc.  My preference is to use LaTeX to PDF.  To use LaTeX and Pandoc you will need to install them separately first:
 
 https://www.latex-project.org/get/
+
 http://pandoc.org
 
 To use knitr make sure that knitr instead of sweave is selected in R studio under options to 'Weave Rnw files using:'
@@ -195,9 +214,29 @@ The concept at the heart ggplot2 is that graphics are comprised of individual el
 
 
 
-Add to ggplot following a '+'.
+A ggplot graphic is built up by lines adding each of these elements.  Each line should follow a '+'.
+
+For example, the following code produces a basic line plot:
+
+```r
+here
+```
+
+By adding a line we can add a title to the basic plot:
+
+```r
+here
+```
+
+We can then add another line to include a text annotation:
+
+```r
+here
+```
 
 It's a powerful idea and can be used to build very nice charts.
+
+There are different schools of thought about how each line should be added.  I prefer to add the '+' at the end of the previous line rather than at the beginning of the current line as it makes commenting lines out when testing new plots slightly easier. 
 
 ##### Text annotation
 
@@ -232,6 +271,26 @@ geom_vline(xintercept = 60528, color = "#8e0a26", linetype="dashed")
 
 ##### Using a variable in a title or subtitle
 
+#### Commas in scales
+
+Use the scales library to easily add commas to the axis of plots that need them.
+
+
+##### X axis
+
+```r
+scale_x_continuous(labels = comma) # Assumes scales library is loaded
+```
+
+##### X axis
+
+```r
+scale_y_continuous(labels = comma) # Assumes scales library is loaded
+```
+
+####
+
+
 ## Tables
 
 LaTeX "booktabs" style tables are the way to go for the best looking tables possible.  A few different R libraries make this possible but I've had the best results with Kable and Kableextra.
@@ -247,7 +306,7 @@ Make sure you are using Knitr (i.e. your file should be saved as a .Rnw file).
 library(kableExtra) # Assuming that knitr library is already loaded
 data <- mtcars[1:5, 1:6]
 options(knitr.table.format = "latex")
-kable(dt, longtable = T, booktabs = T, caption = "This is a table.")%>%
+kable(data, longtable = T, booktabs = T, caption = "This is a table.")%>%
   kable_styling(font_size = 10)
 @
 ```
