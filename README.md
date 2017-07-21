@@ -56,6 +56,31 @@ Most of the examples shown here use ggplot2.
 
 #### Aesthetics
 
+
+Add to ggplot following a '+'.
+
+##### Text annotation
+
+```r
+annotate("text", label="Forecast", x=2017.5, y=77000, size=3)
+```
+
+
+##### Shaded rectangle
+
+```r
+annotate("rect", xmin = 2017, xmax = 2018, ymin = 0, ymax = 80000, alpha = .1)
+```
+
+
+##### A vertical line:
+
+e.g.
+
+```r
+geom_vline(xintercept = 60528, color = "#8e0a26", linetype="dashed")
+```
+
 #### Titles and subtitles
 
 ### Suppress scientific notation
@@ -117,15 +142,57 @@ scale_colour_tableau(name = "","colorblind10") # use Tableau colour blind pallet
 ### Exporting plots
 
 
-#### Using knitr 
-
 
 #### Plotting to file
 
-PDF is preferred.  However beware excessive transparency.
+As a vector format, the PDF file format offers high fidelity output.  PDF files can prove difficult to print however if they use excessive transparencies, e.g. a map with thousands of overlaid semi-transparent points will probably fail to flatten when printing.  In such cases a better choice would be to use a raster format such as a PNG file.
+
+#### Output to PDF
+
+```r
+pdf(file="FILENAME.pdf", width = 8, height = 4.5) # Prepare to output PDF with 16 by 9 ratio, change FILENAME accordingly
+
+# YOUR PLOT HERE
+
+dev.off() # output file
+```
+
+#### Output to PNG
+
+
+```r
+png(file="FILENAME.png", width = 1600, height = 900) # 16 by 9 ratio, change FILENAME accordingly
+
+# YOUR PLOT HERE
+
+dev.off() # output file
+```
+
+
+#### Using knitr 
+
+Knitr documents are written in Markdown or in LaTeX and enables export to a variety of file formats via Pandoc.  My preference is to use LaTeX to PDF.
 
 
 ## Tables
+
+LaTeX "booktabs" style tables are the way to go.  A few different R libraries make this possible but I've had the best results with Kable and Kableextra.
+
+### Using Kable and Kableextra
+
+The Kableextra library gives really nice results, see:  https://github.com/haozhu233/kableExtra
+
+Makes sure you are using Knitr (i.e. your file should be saved as a .Rnw file).
+
+```r
+<<Demo Table>>=
+library(kableExtra) # Assuming that knitr library is already loaded
+data <- mtcars[1:5, 1:6]
+options(knitr.table.format = "latex")
+kable(dt, longtable = T, booktabs = T, caption = "This is a table.")%>%
+  kable_styling(font_size = 10)
+@
+```
 
 
 ## Line chart
