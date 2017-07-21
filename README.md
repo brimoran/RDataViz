@@ -49,6 +49,15 @@ David Wilkins (2017). treemapify: Draw treemaps easily. R package version 2.2.2.
 
 ## Data viz: general tips
 
+### ggplot2 key techniques
+
+Most of the examples shown here use ggplot2.
+
+
+#### Aesthetics
+
+#### Titles and subtitles
+
 ### Suppress scientific notation
 
 We are producing data viz for business here and so it is useful to suppress scientific notation.  To do so use the following code in your R script prior to plotting:
@@ -80,7 +89,7 @@ colfunc(20) # print 20 colours in the range
 
 #### Colour blind safe colours
 
-The ggthemes library provides good colour blind friendly palletes based on those provided by Tableau.  To view this pallete use:
+The scales library provides good colour blind friendly palletes based on those provided by Tableau.  To view this pallete use:
 
 ```r
 library("scales")
@@ -113,7 +122,7 @@ scale_colour_tableau(name = "","colorblind10") # use Tableau colour blind pallet
 
 #### Plotting to file
 
-PDF is preferred.
+PDF is preferred.  However beware excessive transparency.
 
 
 ## Tables
