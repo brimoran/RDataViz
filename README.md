@@ -49,39 +49,28 @@ David Wilkins (2017). treemapify: Draw treemaps easily. R package version 2.2.2.
 
 ## Data viz: general tips
 
-### ggplot2 key techniques
+### R tips
 
-Most of the examples shown here use ggplot2.
+### Working with dates
 
+You need to be explicit about date formats in R.  Use transform... as.Date to tell R to change a field in your dataframe to date format. 
 
-#### Aesthetics
+#### DMY
 
-
-Add to ggplot following a '+'.
-
-##### Text annotation
+e.g. date in format dd/mm/yyyy:
 
 ```r
-annotate("text", label="Forecast", x=2017.5, y=77000, size=3)
+data$YOURFIELDNAME<- as.Date(data$YOURFIELDNAME, "%d/%m/%Y") # tranform a field name to dd-mm-yyyy change YOURFIELDNAME
 ```
 
 
-##### Shaded rectangle
+#### YMD
+
+e.g. date in format yyyy-mm-dd:
 
 ```r
-annotate("rect", xmin = 2017, xmax = 2018, ymin = 0, ymax = 80000, alpha = .1)
+data$Year<- as.Date(data$Year, "%Y-%m-%d") # Change YOURFIELDNAME accordingly
 ```
-
-
-##### A vertical line:
-
-e.g.
-
-```r
-geom_vline(xintercept = 60528, color = "#8e0a26", linetype="dashed")
-```
-
-#### Titles and subtitles
 
 ### Suppress scientific notation
 
@@ -90,6 +79,7 @@ We are producing data viz for business here and so it is useful to suppress scie
 ```r
 options(scipen=999) # supress scientific notation
 ```
+
 
 ### Working with colour
 
@@ -129,19 +119,22 @@ scale_colour_tableau(name = "","colorblind10") # use Tableau colour blind pallet
 
 ### Commas in scales
 
+Use the scales library to easily add commas to the axis of plots.
 
 
-### Working with dates
+#### X axis
 
-#### DMY
+```r
+scale_x_continuous(labels = comma) # Assumes scales library is loaded
+```
 
+#### X axis
 
-#### YMD
-
+```r
+scale_y_continuous(labels = comma) # Assumes scales library is loaded
+```
 
 ### Exporting plots
-
-
 
 #### Plotting to file
 
@@ -159,7 +152,6 @@ dev.off() # output file
 
 #### Output to PNG
 
-
 ```r
 png(file="FILENAME.png", width = 1600, height = 900) # 16 by 9 ratio, change FILENAME accordingly
 
@@ -174,15 +166,52 @@ dev.off() # output file
 Knitr documents are written in Markdown or in LaTeX and enables export to a variety of file formats via Pandoc.  My preference is to use LaTeX to PDF.
 
 
+### ggplot2 key techniques
+
+Most of the examples shown here use ggplot2.
+
+
+#### Aesthetics
+
+
+Add to ggplot following a '+'.
+
+##### Text annotation
+
+```r
+annotate("text", label="Forecast", x=2017.5, y=77000, size=3)
+```
+
+##### Shaded rectangle
+
+```r
+annotate("rect", xmin = 2017, xmax = 2018, ymin = 0, ymax = 80000, alpha = .1)
+```
+
+##### A vertical line:
+
+e.g.
+
+```r
+geom_vline(xintercept = 60528, color = "#8e0a26", linetype="dashed")
+```
+
+##### A horizontal line:
+
+
+#### Titles and subtitles
+
+##### Using a variable in a title or subtitle
+
 ## Tables
 
-LaTeX "booktabs" style tables are the way to go.  A few different R libraries make this possible but I've had the best results with Kable and Kableextra.
+LaTeX "booktabs" style tables are the way to go for the best looking tables possible.  A few different R libraries make this possible but I've had the best results with Kable and Kableextra.
 
 ### Using Kable and Kableextra
 
 The Kableextra library gives really nice results, see:  https://github.com/haozhu233/kableExtra
 
-Makes sure you are using Knitr (i.e. your file should be saved as a .Rnw file).
+Make sure you are using Knitr (i.e. your file should be saved as a .Rnw file).
 
 ```r
 <<Demo Table>>=
