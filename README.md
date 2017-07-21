@@ -121,7 +121,7 @@ options(scipen=999) # supress scientific notation
 
 #### Working with colour
 
-Colour choice matters.  I recommend either sticking with a colour blind safe colour pallete or creating a restarined colour pallete based on one or two colours.  Think about what you are trying to communicate through your charts and use colour to emphasise this.
+Colour choice matters.  I recommend either sticking with a colour blind safe colour pallete or creating a restrained colour pallete based on one or two colours.  Think about what you are trying to communicate through your charts and use colour to emphasise this.
 
 
 ##### Colour blind safe colours
@@ -208,13 +208,9 @@ Most of the examples shown here use ggplot2.
 
 #### Getting the gist of ggplot2
 
-The concept at the heart ggplot2 is that graphics are comprised of individual elements that can be added to each other.  The basic elements are:
+The concept at the heart of ggplot2 is that graphics are comprised of individual elements that can be layered on each other. 
 
-*
-
-
-
-A ggplot graphic is built up by lines adding each of these elements.  Each line should follow a '+'.
+A ggplot graphic is built up by lines of code which layer each elements.  Each new line of code that adds a new layer should follow a '+'.
 
 For example, the following code produces a basic line plot:
 
@@ -237,6 +233,8 @@ here
 It's a powerful idea and can be used to build very nice charts.
 
 There are different schools of thought about how each line should be added.  I prefer to add the '+' at the end of the previous line rather than at the beginning of the current line as it makes commenting lines out when testing new plots slightly easier. 
+
+Examples of layers:
 
 ##### Text annotation
 
@@ -288,7 +286,17 @@ scale_x_continuous(labels = comma) # Assumes scales library is loaded
 scale_y_continuous(labels = comma) # Assumes scales library is loaded
 ```
 
-####
+#### ggthemes
+
+The ggthemes library presents themes for the overall aesthetic of a plot made in ggplot2.  The templates are based on good practice examples such as High Charts, Tableau and The Economist... and even some not-so-good practice examples like Excel!
+
+I like to use the High Charts theme but with different colours than the default choices.
+
+To use the High Charts theme in a ggplot, add the following line of code:
+
+```r
+theme_hc() # Use High Charts theme, assumes ggthemes is loaded
+```
 
 
 ## Tables
