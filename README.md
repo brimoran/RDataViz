@@ -6,7 +6,7 @@ All examples assume that R Studio is being used.
 
 ## Acknowledgements
 
-The code is generally based on the work of others found on the web.  I have tried to attribute the sources used but let me know if you feel I should credit your work.
+The code shared here is generally based on the work of others found on the web.  I have tried to attribute the sources used but let me know if you feel I should credit your work.
 
 ### Recommended reading
 
@@ -51,11 +51,11 @@ David Wilkins (2017). treemapify: Draw treemaps easily. R package version 2.2.2.
 
 ### R tips
 
-### Working with dates
+#### Working with dates
 
-You need to be explicit about date formats in R.  Use transform... as.Date to tell R to change a field in your dataframe to date format. 
+You need to be explicit about date formats in R.  Use as.Date to tell R to change a field in your dataframe to a particular date format. 
 
-#### DMY
+###### DMY
 
 e.g. date in format dd/mm/yyyy:
 
@@ -64,7 +64,7 @@ data$YOURFIELDNAME<- as.Date(data$YOURFIELDNAME, "%d/%m/%Y") # tranform a field 
 ```
 
 
-#### YMD
+###### YMD
 
 e.g. date in format yyyy-mm-dd:
 
@@ -72,37 +72,41 @@ e.g. date in format yyyy-mm-dd:
 data$Year<- as.Date(data$Year, "%Y-%m-%d") # Change YOURFIELDNAME accordingly
 ```
 
-### Suppress scientific notation
+Note the substitution of '/' with '-' in this example.
 
-We are producing data viz for business here and so it is useful to suppress scientific notation.  To do so use the following code in your R script prior to plotting:
+#### Suppressing scientific notation
+
+We are producing data viz for business here and so it is useful to suppress scientific notation, i.e. we would rather show £1,000,000 than £1e6.  To do so use the following code in your R script prior to plotting:
 
 ```r
 options(scipen=999) # supress scientific notation
 ```
 
 
-### Working with colour
+#### Commas in scales
 
-#### Getting a range of colours
+Use the scales library to easily add commas to the axis of plots that need them.
 
-A quick method to get a range of colours:
+
+##### X axis
 
 ```r
-colfunc <- colorRampPalette(c("#8E0A26", "white")) # Create colour gradient between two colours
-colfunc(6) # print 6 colours in the range
-colfunc(20) # print 20 colours in the range
+scale_x_continuous(labels = comma) # Assumes scales library is loaded
 ```
 
-#### Defining colour scales
+##### X axis
+
+```r
+scale_y_continuous(labels = comma) # Assumes scales library is loaded
+```
 
 
-##### Continuous scales
+#### Working with colour
+
+Colour choice matters.  I recommend either sticking with a colour blind safe colour pallete or creating a restarined colour pallete based on one or two colours.  Think about what you are trying to communicate through your charts and use colour to emphasise this.
 
 
-##### Discrete scales
-
-
-#### Colour blind safe colours
+##### Colour blind safe colours
 
 The scales library provides good colour blind friendly palletes based on those provided by Tableau.  To view this pallete use:
 
@@ -117,30 +121,35 @@ To use in your plots, add the following line as part of your ggplot:
 scale_colour_tableau(name = "","colorblind10") # use Tableau colour blind pallete
 ```
 
-### Commas in scales
 
-Use the scales library to easily add commas to the axis of plots.
+##### Getting a range of colours
 
-
-#### X axis
+A quick method to get a range of colours:
 
 ```r
-scale_x_continuous(labels = comma) # Assumes scales library is loaded
+colfunc <- colorRampPalette(c("#8E0A26", "white")) # Create colour gradient between two colours
+colfunc(6) # print 6 colours in the range
+colfunc(20) # print 20 colours in the range
 ```
 
-#### X axis
+##### Defining colour scales
 
-```r
-scale_y_continuous(labels = comma) # Assumes scales library is loaded
-```
 
-### Exporting plots
+###### Continuous scales
 
-#### Plotting to file
 
-As a vector format, the PDF file format offers high fidelity output.  PDF files can prove difficult to print however if they use excessive transparencies, e.g. a map with thousands of overlaid semi-transparent points will probably fail to flatten when printing.  In such cases a better choice would be to use a raster format such as a PNG file.
+###### Discrete scales
 
-#### Output to PDF
+
+#### Exporting plots
+
+##### Plotting to file
+
+As a vector format, the PDF file format offers high fidelity output.  PDF files can prove difficult to print however if they use excessive transparencies.  For example, a plot of a map that shows thousands of individual, overlaid semi-transparent points will probably fail to flatten when printing.  In such cases a better choice would be to use a raster format such as a PNG file.
+
+##### Output to PDF
+
+Surround your plot with the following code:
 
 ```r
 pdf(file="FILENAME.pdf", width = 8, height = 4.5) # Prepare to output PDF with 16 by 9 ratio, change FILENAME accordingly
@@ -150,7 +159,9 @@ pdf(file="FILENAME.pdf", width = 8, height = 4.5) # Prepare to output PDF with 1
 dev.off() # output file
 ```
 
-#### Output to PNG
+##### Output to PNG
+
+Surround your plot with the following code:
 
 ```r
 png(file="FILENAME.png", width = 1600, height = 900) # 16 by 9 ratio, change FILENAME accordingly
@@ -161,9 +172,14 @@ dev.off() # output file
 ```
 
 
-#### Using knitr 
+##### Using knitr 
 
-Knitr documents are written in Markdown or in LaTeX and enables export to a variety of file formats via Pandoc.  My preference is to use LaTeX to PDF.
+Knitr documents are written in Markdown or in LaTeX.  Knitr enables export to a variety of file formats via Pandoc.  My preference is to use LaTeX to PDF.  To use LaTeX and Pandoc you will need to install them separately first:
+
+https://www.latex-project.org/get/
+http://pandoc.org
+
+To use knitr make sure that knitr instead of sweave is selected in R studio under options to 'Weave Rnw files using:'
 
 
 ### ggplot2 key techniques
@@ -171,10 +187,17 @@ Knitr documents are written in Markdown or in LaTeX and enables export to a vari
 Most of the examples shown here use ggplot2.
 
 
-#### Aesthetics
+#### Getting the gist of ggplot2
+
+The concept at the heart ggplot2 is that graphics are comprised of individual elements that can be added to each other.  The basic elements are:
+
+*
+
 
 
 Add to ggplot following a '+'.
+
+It's a powerful idea and can be used to build very nice charts.
 
 ##### Text annotation
 
@@ -188,7 +211,7 @@ annotate("text", label="Forecast", x=2017.5, y=77000, size=3)
 annotate("rect", xmin = 2017, xmax = 2018, ymin = 0, ymax = 80000, alpha = .1)
 ```
 
-##### A vertical line:
+##### Vertical line
 
 e.g.
 
@@ -196,7 +219,13 @@ e.g.
 geom_vline(xintercept = 60528, color = "#8e0a26", linetype="dashed")
 ```
 
-##### A horizontal line:
+##### Horizontal line
+
+
+##### Fitted line
+
+
+##### Functions
 
 
 #### Titles and subtitles
