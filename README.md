@@ -286,7 +286,7 @@ data <- women # load data
 ggplot(data, aes(x = weight, y = height)) +
   geom_line() + # adding a line
   ggtitle("Average Heights and Weights for American Women") + # adding a title
-  annotate("text", label="Median\nweight", x=median(data$weight), y=55, size=3)  # adding an annotation
+  annotate("text", label="Median\nweight", x=median(data$weight), y=60, size=3)  # adding an annotation
 ```
 
 As you can see, each new line of code that adds a new layer should follow a '+'.
