@@ -1,6 +1,6 @@
 # RDataViz
 
-Examples of data viz using R with an emphasis on good practice in visual design for a 'corporate' rather than scientific audience.
+Examples of data viz using R with an emphasis on good practice in visual design for a 'corporate' rather than for a scientific audience.
 
 All examples tested with R version 3.4.0 and assume that R Studio is being used, tested with version 1.0.143.
 
@@ -47,21 +47,21 @@ Hadley Wickham (2016). scales: Scale Functions for Visualization. R package vers
 David Wilkins (2017). treemapify: Draw treemaps easily. R package version 2.2.2. https://github.com/wilkox/treemapify
 
 
-## Data viz: general tips
+## Some general tips
 
 ### R tips
 
-This section is not intended to provide a comprehensive primer for R.  Rather it is a collection of the useful tips that the data viz examples use and an opportunity to explain why they are used.
+This section is not intended to provide a comprehensive primer for R.  Rather it is a collection of the useful tips that the data viz examples use and an opportunity for me to explain why they are used.
 
 #### Working directory
 
-For simplicity, I would suggest keeping your R scripts and data sources in the same directory.  If you do, the following code can be used in your scripts to set your working directory to the location of the R script.  This will help ensure that your work is easily portable for others:
+For simplicity, I would suggest keeping your R scripts and data sources in the same directory.  If you do, the following code can be used right at the start of your scripts to set your working directory to the location of the R script.  This will help ensure that your work is easily portable for others:
 
 ```r
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path)) # set working directory
 ```
 
-*Note*: this requires R studio to be used and the rstudioapi library to have been previously installed.
+*Note*: this requires R studio to be used and the rstudioapi library to have been previously installed.  The rstudioapi library is installed just like any other library in R.
 
 #### Loading libraries
 
@@ -77,7 +77,7 @@ for (package in c('ggplot2', 'ggthemes','ggmap', 'scales')) {
 }
 ```
 
-In this case ggplot2, ggthemes, ggmap and scales will be loaded or installed and then loaded if not already present.
+In this case ggplot2, ggthemes, ggmap and scales will be loaded, or installed and then loaded if not already present.
 
 #### Loading data
 
@@ -91,7 +91,7 @@ data <- read.csv("YOURFILENAME.csv",header=TRUE, sep = ',') # Read csv file, cha
 
 #### Cleaning imported data
 
-By defining and using a clean function we can make sure that numeric csv data is cleansed of common extraneous characters that would cause problems with analysis in R.
+By defining and using a clean function we can make sure that numeric csv data is cleansed of common extraneous characters (commas, pound signs etc.) that would cause problems with analysis in R.
 
 To apply to the entire data frame of variables (be careful in using this as it will bork any variables in your data frame which you need to be non-numeric):
 
@@ -116,6 +116,11 @@ To apply to specific variables in the data frame:
 data[,c("YOURVARIABLENAME","YOUROTHERVARIABLENAME")] <- sapply(data, clean) # Assumes that the clean function has already been created, change text in capitals
 ```
 
+#### Removing incomplete data
+
+```r
+data <- na.omit(data) # deletes rows with missing data
+```
 
 
 #### Working with dates
@@ -143,14 +148,17 @@ Note the substitution of '/' with '-' in this example.
 
 #### Suppressing scientific notation
 
-We are producing data viz for business here and so it is useful to suppress scientific notation, i.e. we would rather show one million as 1,000,000 than as 1e6.  To get part of the way towards this use the following code in your R script prior to plotting:
+We are producing data viz for business here and so it is useful to suppress scientific notation, i.e. we would rather show the number one million as 1,000,000 than as 1e6.  To get part of the way towards this use the following code in your R script prior to plotting:
 
 ```r
 options(scipen=999) # supress scientific notation
 ```
 
-With scientific notation suppressed, one million will be shown by R as 1000000.  We will need to use a further line of code in our plots to also show comma separators.
+With scientific notation suppressed, the number one million will be shown by R as 1000000.  We will need to use a further line of code in our plots to also show comma separators.
 
+#### Subsetting data
+
+To do.
 
 #### Working with colour
 
@@ -267,8 +275,10 @@ data <- women # load data
 ggplot(data, aes(x = weight, y = height)) +
   geom_line() # adding a line
 ```
+The first line loads the data.  The second line tells ggplot which data source to use and outlines the basic aesthetics "aes" for the plot.  The third line adds a geometric shape "geom" to the plot.
 
-By adding  line we can add a title to the basic plot:
+
+By adding a further line of code we can add a title to the basic plot.  Note the addition of the '+':
 
 ```r
 data <- women # load data
@@ -278,7 +288,7 @@ ggplot(data, aes(x = weight, y = height)) +
   ggtitle("Average Heights and Weights for American Women") # adding a title
 ```
 
-We can then add another line to include a text annotation:
+We can then add another line to include a text annotation.  Again note the '+':
 
 ```r
 data <- women # load data
@@ -289,7 +299,7 @@ ggplot(data, aes(x = weight, y = height)) +
   annotate("text", label="Median\nweight", x=median(data$weight), y=55, size=3)  # adding an annotation
 ```
 
-As you can see, each new line of code that adds a new layer should follow a '+'.
+Eeach new line of code that adds a new layer should follow a '+'.
 
 There are different schools of thought about the positioning of the '+'.  I prefer to add the '+' at the end of the previous line rather than at the beginning of the current line YMMV.
 
@@ -321,7 +331,7 @@ geom_vline(xintercept = median(data$weight), linetype="dashed")
 
 ##### Horizontal line
 ```r
-  geom_hline(yintercept = median(data$height), linetype="dotted") 
+geom_hline(yintercept = median(data$height), linetype="dotted") 
 ```
 
 ##### Text annotation
@@ -351,8 +361,9 @@ stat_smooth(method="lm",formula=y ~ x + I(x^2), se=FALSE) # add fitted line base
 
 #### Titles and subtitles
 
+```r
 ggtitle("A title", subtitle = "A subtitle")
-
+```
 
 ##### Using a variable in a title or subtitle
 
@@ -396,16 +407,23 @@ To use the High Charts theme in a ggplot, add the following line of code:
 theme_hc() # Use High Charts theme, assumes ggthemes is loaded
 ```
 
+## Examples
 
 ## Tables
+
+Table.Rnw
 
 LaTeX "booktabs" style tables are the way to go for the best looking tables possible.  A few different R libraries make this possible but I've had the best results with Kable and Kableextra.
 
 ### Using Kable and Kableextra
 
+To do.
+
 The Kableextra library gives really nice results, see:  https://github.com/haozhu233/kableExtra
 
 Make sure you are using Knitr (i.e. your file should be saved as a .Rnw file).
+
+The key part of the code is:
 
 ```r
 <<Demo Table>>=
@@ -420,46 +438,55 @@ kable(data, longtable = T, booktabs = T, caption = "This is a table.")%>%
 
 ## Line chart
 
-
+To do.
 
 ## Column / Bar chart
 
+To do.
 
 ### Grouping
 
+To do.
 
 ### Gantt chart
 
+To do.
 
 ## Scatter plot
 
-
-### Fitting scatter plots
-
-
-
+To do.
 
 ## Histogram
 
+To do.
 
 ## Boxplot
 
+To do.
 
 ### Violin plot
+
+To do.
 
 A violin plot is a variation on a box plot.
 
 ## Sankey diagram
 
+To do.
 
 ## Bullet chart
+
+To do.
 
 Concept by Stephen Few, R Implementation by Simon Müller.
 
 ## Treemap
 
+To do.
 
 ## Maps
+
+To do.
 
 ### Points
 
