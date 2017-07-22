@@ -107,13 +107,13 @@ Example based on code published at: http://earlh.com/blog/2009/06/29/cleaning-da
 To apply to a single variable:
 
 ```r
-data$Value <- sapply(data$Value, clean) # Assumes that the clean function has already been created
+data$YOURVARIABLENAME <- sapply(data$YOURVARIABLENAME, clean) # Assumes that the clean function has already been created
 ```
 
-To apply to specific columns in the data frame:
+To apply to specific variables in the data frame:
 
 ```r
-data[,c("YOURCOLUMNNAME","YOUROTHERCOLUMNNAME")] <- sapply(data, clean) # Assumes that the clean function has already been created
+data[,c("YOURVARIABLENAME","YOUROTHERVARIABLENAME")] <- sapply(data, clean) # Assumes that the clean function has already been created
 ```
 
 
