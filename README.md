@@ -86,7 +86,7 @@ The examples given here use R's in-built datasets to ensure reproducibility.
 Each example loads a dataset as data frame  "data".  To replace this with your own csv data, comment out or delete the existing line that creates the data frame "data" and use the following code instead:
 
 ```r
-data <- read.csv("YOURFILENAME.csv",header=TRUE, sep = ',') # Read csv file.
+data <- read.csv("YOURFILENAME.csv",header=TRUE, sep = ',') # Read csv file, change YOURFILENAME
 ```
 
 #### Cleaning imported data
@@ -101,19 +101,19 @@ as.numeric( gsub('[^a-zA-Z0-9.]', '', ttt))
 }
 data[] <- sapply(data, clean)
 ```
-Example based on code published at: http://earlh.com/blog/2009/06/29/cleaning-data-in-r-csv-files/
+Example from code published at: http://earlh.com/blog/2009/06/29/cleaning-data-in-r-csv-files/
 
 
 To apply to a single variable:
 
 ```r
-data$YOURVARIABLENAME <- sapply(data$YOURVARIABLENAME, clean) # Assumes that the clean function has already been created
+data$YOURVARIABLENAME <- sapply(data$YOURVARIABLENAME, clean) # Assumes that the clean function has already been created, change text in capitals
 ```
 
 To apply to specific variables in the data frame:
 
 ```r
-data[,c("YOURVARIABLENAME","YOUROTHERVARIABLENAME")] <- sapply(data, clean) # Assumes that the clean function has already been created
+data[,c("YOURVARIABLENAME","YOUROTHERVARIABLENAME")] <- sapply(data, clean) # Assumes that the clean function has already been created, change text in capitals
 ```
 
 
@@ -127,7 +127,7 @@ You need to be explicit about date formats in R.  Use as.Date to tell R to chang
 e.g. date in format dd/mm/yyyy:
 
 ```r
-data$YOURFIELDNAME<- as.Date(data$YOURFIELDNAME, "%d/%m/%Y") # transform a field name to dd/mm/yyyy change YOURFIELDNAME
+data$YOURVARIABLENAME <- as.Date(data$YOURVARIABLENAME, "%d/%m/%Y") # transform a field name to dd/mm/yyyy, change text in capitals
 ```
 
 
@@ -136,7 +136,7 @@ data$YOURFIELDNAME<- as.Date(data$YOURFIELDNAME, "%d/%m/%Y") # transform a field
 e.g. date in format yyyy-mm-dd:
 
 ```r
-data$YOURFIELDNAME<- as.Date(data$YOURFIELDNAME, "%Y-%m-%d") # transform a field name to yyyy-mm-dd change YOURFIELDNAME
+data$YOURVARIABLENAME <- as.Date(data$YOURVARIABLENAME, "%Y-%m-%d") # transform a field name to yyyy-mm-dd, change text in capitals
 ```
 
 Note the substitution of '/' with '-' in this example.
@@ -203,7 +203,7 @@ As a vector format, the PDF file format offers high fidelity output.  PDF files 
 Surround your plot with the following code:
 
 ```r
-pdf(file="FILENAME.pdf", width = 8, height = 4.5) # Prepare to output PDF with 16 by 9 ratio, change FILENAME accordingly
+pdf(file="FILENAME.pdf", width = 8, height = 4.5) # Prepare to output PDF with 16 by 9 ratio, change text in capitals
 
 # YOUR PLOT HERE
 
@@ -215,7 +215,7 @@ dev.off() # output file
 Surround your plot with the following code:
 
 ```r
-png(file="FILENAME.png", width = 1600, height = 900) # 16 by 9 ratio, change FILENAME accordingly
+png(file="FILENAME.png", width = 1600, height = 900) # 16 by 9 ratio, change text in capitals
 
 # YOUR PLOT HERE
 
@@ -342,7 +342,7 @@ scale_y_continuous(labels = comma) # Assumes scales library is loaded
 
 The ggthemes library presents themes for the overall aesthetic of a plot made in ggplot2.  The templates are based on good practice examples such as High Charts, Tableau and The Economist... and even some not-so-good practice examples like Excel!
 
-I like to use the High Charts theme but with different colours than the default choices.
+I like to use the High Charts theme as it has a good [data ink](http://www.darkhorseanalytics.com/blog/data-looks-better-naked) ratio.  I use different colours than the default choices however.
 
 To use the High Charts theme in a ggplot, add the following line of code:
 
