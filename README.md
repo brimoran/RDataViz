@@ -2,7 +2,7 @@
 
 Examples of data viz using R with an emphasis on good practice in visual design for a 'corporate' rather than scientific audience.
 
-All examples assume that R Studio is being used.
+All examples tested with R version 3.4.0 and assume that R Studio is being used, tested with version 1.0.143.
 
 ## Acknowledgements
 
@@ -131,9 +131,9 @@ data$YOURVARIABLENAME <- as.Date(data$YOURVARIABLENAME, "%d/%m/%Y") # transform 
 ```
 
 
-###### [YMD](https://xkcd.com/1179/)
+###### YMD
 
-e.g. date in format yyyy-mm-dd:
+e.g. date in format [yyyy-mm-dd](https://xkcd.com/1179/):
 
 ```r
 data$YOURVARIABLENAME <- as.Date(data$YOURVARIABLENAME, "%Y-%m-%d") # transform a field name to yyyy-mm-dd, change text in capitals
