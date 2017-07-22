@@ -51,19 +51,21 @@ David Wilkins (2017). treemapify: Draw treemaps easily. R package version 2.2.2.
 
 ### R tips
 
+This section is not intended to provide a comprehensive primer for R.  Rather it is a collection of the useful tips that the data viz examples use and an opportunity to explain why they are used.
+
 #### Working directory
 
-For simplicity, I would suggest keeping your R scripts and data sources in the same directory.  If you do, the following code can be used to set your working directory to the location of the R script and will help ensure that your work is easily portable for others:
+For simplicity, I would suggest keeping your R scripts and data sources in the same directory.  If you do, the following code can be used in your scripts to set your working directory to the location of the R script.  This will help ensure that your work is easily portable for others:
 
 ```r
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path)) # set working directory
 ```
 
-*Note*: this requires R studio to be used and the rstudioapi library to have been installed.
+*Note*: this requires R studio to be used and the rstudioapi library to have been previously installed.
 
 #### Loading libraries
 
-A nice solution to help ensure that your code can be shared easily with colleagues is to install necessary packages on the fly if they are not already present in another R installation.  The following for loop example achieves this:
+A nice solution to help ensure that your code can be shared easily with colleagues is to install necessary packages on the fly if they are not already present in another R installation.  The following for-loop example achieves this:
 
 ```r
 #Load required libraries (installing them if necessary)
@@ -81,15 +83,31 @@ In this case ggplot2, ggthemes, ggmap and scales will be loaded or installed and
 
 The examples given here use R's in-built datasets to ensure reproducibility.
 
-Each example loads a dataset as "data".  To replace this with your own csv data, comment out the existing line loading the data and use the following code instead:
+Each example loads a dataset as data frame  "data".  To replace this with your own csv data, comment out or delete the existing line that creates the data frame "data" and use the following code instead:
 
 ```r
-data <- read.csv("YOURFILENAME.csv",header=TRUE) # Read csv file.
+data <- read.csv("YOURFILENAME.csv",header=TRUE, sep = ',') # Read csv file.
 ```
+
+#### Cleaning imported data
+
+By defining and using a clean function we can make sure that our csv data is cleansed of common extraneous characters that would cause problems with analysis in R:
+
+```r
+clean <- function(ttt){
+as.numeric( gsub('[^a-zA-Z0-9.]', '', ttt))
+}
+data[] <- sapply(data, clean)
+```
+
+NEED TO TEST AND ADD £
+
+Example based on code published at: http://earlh.com/blog/2009/06/29/cleaning-data-in-r-csv-files/
+
 
 #### Working with dates
 
-You need to be explicit about date formats in R.  Use as.Date to tell R to change a field in your dataframe to a particular date format. 
+You need to be explicit about date formats in R.  Use as.Date to tell R to change a field in your data frame to a particular date format. 
 
 ###### DMY
 
@@ -112,11 +130,13 @@ Note the substitution of '/' with '-' in this example.
 
 #### Suppressing scientific notation
 
-We are producing data viz for business here and so it is useful to suppress scientific notation, i.e. we would rather show £1,000,000 than £1e6.  To do so use the following code in your R script prior to plotting:
+We are producing data viz for business here and so it is useful to suppress scientific notation, i.e. we would rather show one million as 1,000,000 than as 1e6.  To get part of the way towards this use the following code in your R script prior to plotting:
 
 ```r
 options(scipen=999) # supress scientific notation
 ```
+
+With scientific notation suppressed, one million will be shown by R as 1000000.  We will need to use a further line of code in our plots to also show comma separators.
 
 
 #### Working with colour
@@ -200,6 +220,18 @@ http://pandoc.org
 
 To use knitr make sure that knitr instead of sweave is selected in R studio under options to 'Weave Rnw files using:'
 
+##### Proportions
+
+One of the big advantages of using R to produce dataviz is the consistency that can be achieved from one plot to the next.
+
+I would suggest using two (and only two) aspect ratios depending on the plot and the context that it will be viewed:
+
+* 16:9
+* 4:3
+
+A 16:9 aspect ratio tends to work well for plots to be included within a document and also for presentations.
+
+A 4:3 aspect ratio works well for plots that will be viewed full-screen on a tablet which is common in a corporate setting.
 
 ### ggplot2 key techniques
 
@@ -208,9 +240,11 @@ Most of the examples shown here use ggplot2.
 
 #### Getting the gist of ggplot2
 
-The concept at the heart of ggplot2 is that graphics are comprised of individual elements that can be layered on each other. 
+The concept at the heart of ggplot2 is that graphics are comprised of individual elements that can be layered on top of each other. 
 
-A ggplot graphic is built up by lines of code which layer each elements.  Each new line of code that adds a new layer should follow a '+'.
+A ggplot graphic is therefore built up by lines of code which layer each element in the graphic.
+
+It's a powerful idea and can be used to simply build extremely good charts.
 
 For example, the following code produces a basic line plot:
 
@@ -230,11 +264,11 @@ We can then add another line to include a text annotation:
 here
 ```
 
-It's a powerful idea and can be used to build very nice charts.
+As you can see, each new line of code that adds a new layer should follow a '+'.
 
-There are different schools of thought about how each line should be added.  I prefer to add the '+' at the end of the previous line rather than at the beginning of the current line as it makes commenting lines out when testing new plots slightly easier. 
+There are different schools of thought about the positioning of the '+'.  I prefer to add the '+' at the end of the previous line rather than at the beginning of the current line YMMV.
 
-Examples of layers:
+Some useful layers:
 
 ##### Text annotation
 
@@ -259,11 +293,16 @@ geom_vline(xintercept = 60528, color = "#8e0a26", linetype="dashed")
 ##### Horizontal line
 
 
+
 ##### Fitted line
 
 
-##### Functions
 
+##### Formulas
+
+```r
+stat_smooth(method="lm",formula=y~log(x), se=FALSE, color = "grey", fill="lightgray") # add fitted line based on formula
+```
 
 #### Titles and subtitles
 
