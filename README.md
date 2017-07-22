@@ -259,7 +259,7 @@ A 16:9 aspect ratio tends to work well for plots to be included within a documen
 
 A 4:3 aspect ratio works well for plots that will be viewed full-screen on a tablet which is common in a corporate setting.
 
-### ggplot2 key techniques
+### Plotting key techniques
 
 Most of the examples shown here use ggplot2.
 
@@ -280,7 +280,7 @@ data <- women # load data
 ggplot(data, aes(x = weight, y = height)) +
   geom_line() # adding a line
 ```
-The first line loads the data.  The second line tells ggplot which data source to use and outlines the basic aesthetics "aes" for the plot.  The third line adds a geometric shape "geom" to the plot.
+The first line loads the data, in this case one of R's in-built datasets.  The second line tells ggplot which data source to use and outlines the basic aesthetics "aes" for the plot.  The third line adds a geometric shape "geom" to the plot.
 
 
 By adding a further line of code we can add a title to the basic plot.  Note the addition of the '+':
@@ -411,6 +411,13 @@ To use the High Charts theme in a ggplot, add the following line of code:
 ```r
 theme_hc() # Use High Charts theme, assumes ggthemes is loaded
 ```
+
+#### Scales
+
+
+
+#### Facets
+
 
 ## Examples
 
