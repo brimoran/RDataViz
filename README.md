@@ -93,7 +93,7 @@ data <- read.csv("YOURFILENAME.csv",header=TRUE, sep = ',') # Read csv file, cha
 
 By defining and using a clean function we can make sure that numeric csv data is cleansed of common extraneous characters that would cause problems with analysis in R.
 
-To apply to the entire data frame of numeric values:
+To apply to the entire data frame of variables (be careful in using this as it will bork any variables in your data frame which you need to be non-numeric):
 
 ```r
 clean <- function(ttt){
