@@ -91,7 +91,9 @@ data <- read.csv("YOURFILENAME.csv",header=TRUE, sep = ',') # Read csv file.
 
 #### Cleaning imported data
 
-By defining and using a clean function we can make sure that our csv data is cleansed of common extraneous characters that would cause problems with analysis in R:
+By defining and using a clean function we can make sure that numeric csv data is cleansed of common extraneous characters that would cause problems with analysis in R.
+
+To apply to the entire data frame of numeric values:
 
 ```r
 clean <- function(ttt){
@@ -99,10 +101,21 @@ as.numeric( gsub('[^a-zA-Z0-9.]', '', ttt))
 }
 data[] <- sapply(data, clean)
 ```
-
-NEED TO TEST AND ADD £
-
 Example based on code published at: http://earlh.com/blog/2009/06/29/cleaning-data-in-r-csv-files/
+
+
+To apply to a single variable:
+
+```r
+data$Value <- sapply(data$Value, clean) # Assumes that the clean function has already been created
+```
+
+To apply to specific columns in the data frame:
+
+```r
+data[,c("YOURCOLUMNNAME","YOUROTHERCOLUMNNAME")] <- sapply(data, clean) # Assumes that the clean function has already been created
+```
+
 
 
 #### Working with dates
