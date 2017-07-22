@@ -262,19 +262,31 @@ It's a powerful idea and can be used to simply build extremely good charts.
 For example, the following code produces a basic line plot:
 
 ```r
-here
+data <- women # load data
+
+ggplot(data, aes(x = weight, y = height)) +
+  geom_line() # adding a line
 ```
 
-By adding a line we can add a title to the basic plot:
+By adding  line we can add a title to the basic plot:
 
 ```r
-here
+data <- women # load data
+
+ggplot(data, aes(x = weight, y = height)) +
+  geom_line() + # adding a line
+  ggtitle("Average Heights and Weights for American Women") # adding a title
 ```
 
 We can then add another line to include a text annotation:
 
 ```r
-here
+data <- women # load data
+
+ggplot(data, aes(x = weight, y = height)) +
+  geom_line() + # adding a line
+  ggtitle("Average Heights and Weights for American Women") + # adding a title
+  annotate("text", label="Median\nweight", x=median(data$weight), y=55, size=3)  # adding an annotation
 ```
 
 As you can see, each new line of code that adds a new layer should follow a '+'.
@@ -283,56 +295,90 @@ There are different schools of thought about the positioning of the '+'.  I pref
 
 Some useful layers:
 
+##### Show the data points
+
+```r
+geom_point(size = 1.1) 
+```
+
+##### Manually add a point
+
+```r
+annotate("point", x = 130, y = 70)
+```
+
+##### Add a point with a range
+
+```r
+annotate("pointrange", x = 125, y = 59, ymin = 58, ymax = 60)
+```
+
+##### Vertical line
+
+```r
+geom_vline(xintercept = median(data$weight), linetype="dashed") 
+```
+
+##### Horizontal line
+```r
+  geom_hline(yintercept = median(data$height), linetype="dotted") 
+```
+
 ##### Text annotation
 
 ```r
-annotate("text", label="Forecast", x=2017.5, y=77000, size=3)
+annotate("text", label="Median height", x=120, y=median(data$height), size=3) + # adding an annotation
 ```
 
 ##### Shaded rectangle
 
 ```r
-annotate("rect", xmin = 2017, xmax = 2018, ymin = 0, ymax = 80000, alpha = .1)
+annotate("rect", xmin = 150, xmax = 160, ymin = 67, ymax = 73, alpha = .1)
 ```
-
-##### Vertical line
-
-e.g.
-
-```r
-geom_vline(xintercept = 60528, color = "#8e0a26", linetype="dashed")
-```
-
-##### Horizontal line
-
-
 
 ##### Fitted line
 
+```r
+geom_smooth(method = "lm", se=FALSE) 
+```
 
 
-##### Formulas
+##### Fitted formula
 
 ```r
-stat_smooth(method="lm",formula=y~log(x), se=FALSE, color = "grey", fill="lightgray") # add fitted line based on formula
+stat_smooth(method="lm",formula=y ~ x + I(x^2), se=FALSE) # add fitted line based on formula
 ```
 
 #### Titles and subtitles
 
+ggtitle("A title", subtitle = "A subtitle")
+
+
 ##### Using a variable in a title or subtitle
+
+Set it up first before your ggplot:
+
+```r
+today <- format(Sys.time(), "%d/%m/%Y") # Create variable with today's date
+chart_sub <- paste("Chart produced on", today) # Create a subtitle including variable 'today'
+```
+Then within your ggplot:
+
+```r
+ggtitle("Average Heights and Weights for American Women", subtitle = paste0(chart_sub))
+```
 
 #### Commas in scales
 
 Use the scales library to easily add commas to the axis of plots that need them.
 
-
-##### X axis
+For the x axis:
 
 ```r
 scale_x_continuous(labels = comma) # Assumes scales library is loaded
 ```
 
-##### X axis
+For the y axis:
 
 ```r
 scale_y_continuous(labels = comma) # Assumes scales library is loaded
@@ -340,7 +386,7 @@ scale_y_continuous(labels = comma) # Assumes scales library is loaded
 
 #### ggthemes
 
-The ggthemes library presents themes for the overall aesthetic of a plot made in ggplot2.  The templates are based on good practice examples such as High Charts, Tableau and The Economist... and even some not-so-good practice examples like Excel!
+The ggthemes library presents themes for the overall aesthetic of a plot made in ggplot2.  The templates are based on good practice examples such as High Charts, Tableau and The Economist... and even some not-so-good practice, tongue-in-cheek examples like Excel!
 
 I like to use the High Charts theme as it has a good [data ink](http://www.darkhorseanalytics.com/blog/data-looks-better-naked) ratio.  I use different colours than the default choices however.
 
