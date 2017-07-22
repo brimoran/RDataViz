@@ -233,11 +233,11 @@ http://pandoc.org
 
 To use knitr make sure that knitr instead of sweave is selected in R studio under options to 'Weave Rnw files using:'
 
-##### Proportions
+##### Plot dimensions
 
 One of the big advantages of using R to produce dataviz is the consistency that can be achieved from one plot to the next.
 
-I would suggest using two (and only two) aspect ratios depending on the plot and the context that it will be viewed:
+I would suggest using two (and only two) aspect ratios depending on the plot and the context in which it will be viewed:
 
 * 16:9
 * 4:3
