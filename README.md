@@ -158,11 +158,18 @@ With scientific notation suppressed, the number one million will be shown by R a
 
 #### Subsetting data
 
-Subsetting can be easily achieved in R by using the "subset" command.  Use normal R operators for equal to "==", not equal to "!=" etc. and chain conditions together with "&".
+Subsetting can be easily achieved in R by using the "subset" command.  Use normal R lofical operators for equivalent to "==", not equivalent to "!=", and "&", or "|" [etc](http://www.statmethods.net/management/operators.html).
 
 ```r
 subsetdata <- subset(data, YOURVARIABLENAME != "YOURCHARACTERVALUE" &  YOUROTHERVARIABLENAME > YOURNUMERICVALUE) # subset the data
 ```
+Alternatively, and [prefered](https://stackoverflow.com/questions/9860090/why-is-better-than-subset):
+
+```r
+subsetdata <- data[data$YOURVARIABLENAME != "YOURCHARACTERVALUE" & data$YOUROTHERVARIABLENAME > YOURNUMERICVALUE, ]
+```
+
+airquality[airquality$Month == 8 & airquality$Temp > 90, ]
 
 
 #### Working with colour
@@ -304,7 +311,7 @@ ggplot(data, aes(x = weight, y = height)) +
   annotate("text", label="Median\nweight", x=median(data$weight), y=60, size=3)  # adding an annotation
 ```
 
-Eeach new line of code that adds a new layer should follow a '+'.
+Each new line of code that adds a new layer should follow a '+'.
 
 There are different schools of thought about the positioning of the '+'.  I prefer to add the '+' at the end of the previous line rather than at the beginning of the current line YMMV.
 
