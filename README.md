@@ -158,7 +158,12 @@ With scientific notation suppressed, the number one million will be shown by R a
 
 #### Subsetting data
 
-To do.
+Subsetting can be easily achieved in R by using the "subset" command.  Use normal R operators for equal to "==", not equal to "!=" etc. and chain conditions together with "&".
+
+```r
+subsetdata <- subset(data, YOURVARIABLENAME != "YOURCHARACTERVALUE" &  YOUROTHERVARIABLENAME > YOURNUMERICVALUE) # subset the data
+```
+
 
 #### Working with colour
 
@@ -265,7 +270,7 @@ The concept at the heart of ggplot2 is that graphics are comprised of individual
 
 A ggplot graphic is therefore built up by lines of code which layer each element in the graphic.
 
-It's a powerful idea and can be used to simply build extremely good charts.
+It's a simple but powerful idea and can be used to build extremely good charts.
 
 For example, the following code produces a basic line plot:
 
