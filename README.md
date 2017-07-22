@@ -169,9 +169,6 @@ Alternatively, and [prefered](https://stackoverflow.com/questions/9860090/why-is
 subsetdata <- data[data$YOURVARIABLENAME != "YOURCHARACTERVALUE" & data$YOUROTHERVARIABLENAME > YOURNUMERICVALUE, ]
 ```
 
-airquality[airquality$Month == 8 & airquality$Temp > 90, ]
-
-
 #### Working with colour
 
 Colour choice matters.  I recommend either sticking with a colour blind safe colour pallete or creating a restrained colour pallete based on one or two colours.  Think about what you are trying to communicate through your charts and use colour to emphasise this.
