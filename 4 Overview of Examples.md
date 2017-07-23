@@ -1,4 +1,6 @@
-## Examples
+# Overview of Examples
+
+This section summarises the examples contained in the "Examples" folder.
 
 ## Tables
 
