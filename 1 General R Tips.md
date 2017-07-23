@@ -10,7 +10,7 @@ For simplicity, I would suggest keeping your R scripts and data sources in the s
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path)) # set working directory
 ```
 
-*Note*: this requires R studio to be used and the rstudioapi library to have been previously installed.  The rstudioapi library is installed just like any other library in R:
+*Note*: this requires R studio to be used and the rstudioapi package to have been previously installed.  The rstudioapi package is installed just like any other package in R:
 
 ```r
 install.packages("rstudioapi") # Assumes that repository has already been set in R Studio
@@ -140,7 +140,7 @@ Colour choice matters.  I recommend either sticking with a colour blind safe col
 
 ### Colour blind safe colours
 
-The scales library provides good colour blind friendly palletes based on those provided by Tableau.  To view this pallete use:
+The scales package provides good colour blind friendly palletes based on those provided by Tableau.  To view this pallete use:
 
 ```r
 library("scales")
