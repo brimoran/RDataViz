@@ -1,9 +1,9 @@
-### Plotting key techniques
+# Plotting tips
 
 Most of the examples shown here use ggplot2.
 
 
-#### Getting the gist of ggplot2
+## Getting the gist of ggplot2
 
 The concept at the heart of ggplot2 is that graphics are comprised of individual elements that can be layered on top of each other. 
 
@@ -19,6 +19,7 @@ data <- women # load data
 ggplot(data, aes(x = weight, y = height)) +
   geom_line() # adding a line
 ```
+
 The first line loads the data, in this case one of R's in-built datasets.  The second line tells ggplot which data source to use and outlines the basic aesthetics "aes" for the plot.  The third line adds a geometric shape "geom" to the plot.
 
 
@@ -49,67 +50,67 @@ There are different schools of thought about the positioning of the '+'.  I pref
 
 Some useful layers:
 
-##### Show the data points
+### Show the data points
 
 ```r
 geom_point(size = 1.1) 
 ```
 
-##### Manually add a point
+### Manually add a point
 
 ```r
 annotate("point", x = 130, y = 70)
 ```
 
-##### Add a point with a range
+### Add a point with a range
 
 ```r
 annotate("pointrange", x = 125, y = 59, ymin = 58, ymax = 60)
 ```
 
-##### Vertical line
+### Vertical line
 
 ```r
 geom_vline(xintercept = median(data$weight), linetype="dashed") 
 ```
 
-##### Horizontal line
+### Horizontal line
 ```r
 geom_hline(yintercept = median(data$height), linetype="dotted") 
 ```
 
-##### Text annotation
+### Text annotation
 
 ```r
 annotate("text", label="Median height", x=120, y=median(data$height), size=3) + # adding an annotation
 ```
 
-##### Shaded rectangle
+### Shaded rectangle
 
 ```r
 annotate("rect", xmin = 150, xmax = 160, ymin = 67, ymax = 73, alpha = .1)
 ```
 
-##### Fitted line
+### Fitted linear line
 
 ```r
 geom_smooth(method = "lm", se=FALSE) 
 ```
 
 
-##### Fitted formula
+### Fitted formula
 
 ```r
 stat_smooth(method="lm",formula=y ~ x + I(x^2), se=FALSE) # add fitted line based on formula
 ```
 
-#### Titles and subtitles
+### Titles and subtitles
 
 ```r
 ggtitle("A title", subtitle = "A subtitle")
 ```
 
-##### Using a variable in a title or subtitle
+#### Using a variable in a title or subtitle
 
 Set it up first before your ggplot:
 
@@ -124,7 +125,7 @@ ggtitle("Average Heights and Weights for American Women", subtitle = paste0(char
 ```
 
 
-#### ggthemes
+## ggthemes
 
 The ggthemes library presents themes for the overall aesthetic of a plot made in ggplot2.  The templates are based on good practice examples such as High Charts, Tableau and The Economist... and even some not-so-good practice, tongue-in-cheek examples like Excel!
 
@@ -136,10 +137,9 @@ To use the High Charts theme in a ggplot, add the following line of code:
 theme_hc() # Use High Charts theme, assumes ggthemes is loaded
 ```
 
-#### Scales
+## Scales
 
-
-#### Commas in scales
+### Commas in scales
 
 Use the scales library to easily add commas to the axis of plots that need them.
 
@@ -155,5 +155,5 @@ For the y axis:
 scale_y_continuous(labels = comma) # Assumes scales library is loaded
 ```
 
-#### Facets
+## Facets
 
