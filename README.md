@@ -76,6 +76,8 @@ for (package in c('ggplot2', 'ggthemes','ggmap', 'scales')) {
   }
 }
 ```
+Example from code published by Daniel Sparing at https://stackoverflow.com/questions/5595512/what-is-the-difference-between-require-and-library
+
 
 In this case ggplot2, ggthemes, ggmap and scales will be loaded, or installed and then loaded if not already present.
 
@@ -89,7 +91,17 @@ Each example loads a dataset as data frame  "data".  To replace this with your o
 data <- read.csv("YOURFILENAME.csv",header=TRUE, sep = ',') # Read csv file, change YOURFILENAME
 ```
 
+#### Checking the structure of data
+
+In R Studio you can easily view data through the GUI.  Sometimes it is more convenient to use the following command instead however:
+
+```r
+str(data) # Check structure of data
+```
+
 #### Cleaning imported data
+
+Files sourced in a corporate environment are often messy.
 
 By defining and using a clean function we can make sure that numeric csv data is cleansed of common extraneous characters (commas, pound signs etc.) that would cause problems with analysis in R.
 
@@ -117,6 +129,8 @@ data[,c("YOURVARIABLENAME","YOUROTHERVARIABLENAME")] <- sapply(data, clean) # As
 ```
 
 #### Removing incomplete data
+
+Removing rows of incomplete data is not necessary for plotting but is required for some analysis you may need to undertake prior to plotting.  Only use if incomplete data is causing problems in your workflow:
 
 ```r
 data <- na.omit(data) # deletes rows with missing data
@@ -388,21 +402,6 @@ Then within your ggplot:
 ggtitle("Average Heights and Weights for American Women", subtitle = paste0(chart_sub))
 ```
 
-#### Commas in scales
-
-Use the scales library to easily add commas to the axis of plots that need them.
-
-For the x axis:
-
-```r
-scale_x_continuous(labels = comma) # Assumes scales library is loaded
-```
-
-For the y axis:
-
-```r
-scale_y_continuous(labels = comma) # Assumes scales library is loaded
-```
 
 #### ggthemes
 
@@ -419,6 +418,21 @@ theme_hc() # Use High Charts theme, assumes ggthemes is loaded
 #### Scales
 
 
+#### Commas in scales
+
+Use the scales library to easily add commas to the axis of plots that need them.
+
+For the x axis:
+
+```r
+scale_x_continuous(labels = comma) # Assumes scales library is loaded
+```
+
+For the y axis:
+
+```r
+scale_y_continuous(labels = comma) # Assumes scales library is loaded
+```
 
 #### Facets
 
