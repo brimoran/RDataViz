@@ -38,7 +38,7 @@ Two examples are provided with different colour schemes:
 
 The key section of the code is:
 
-```
+```r
 ggplot(data, aes(x = Year, y = Result, group = Variable, color = Variable)) +
   geom_line() +
   geom_point(size = 1.1) + 
@@ -46,7 +46,7 @@ ggplot(data, aes(x = Year, y = Result, group = Variable, color = Variable)) +
   labs(x = "Year", 
        y = "Units") +
   theme_hc()
-```r
+```
 
 The full scripts demonstrates:
 
