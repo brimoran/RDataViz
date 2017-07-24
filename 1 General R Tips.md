@@ -37,9 +37,16 @@ In this case ggplot2, ggthemes, ggmap and scales will be loaded, or installed an
 
 The examples given here use R's in-built datasets to ensure reproducibility.
 
-Each example loads a dataset as data frame  "data".  To replace this with your own csv data, comment out or delete the existing line that creates the data frame "data" and use the following code instead:
+Each example loads a dataset as data frame  "data".  For example:
 
 ```r
+data <- women # load in-built dataset
+```
+
+To replace this with your own csv data, comment out or delete the existing line that creates the data frame "data" and use the following code instead:
+
+```r
+# data <- women # load in-built dataset - commented out
 data <- read.csv("YOURFILENAME.csv",header=TRUE, sep = ',') # Read csv file, change YOURFILENAME
 ```
 
