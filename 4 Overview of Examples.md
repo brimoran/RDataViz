@@ -6,13 +6,13 @@ This section summarises the examples contained in the "Examples" folder.
 
 Table.Rnw
 
-LaTeX "booktabs" style tables are the way to go for the best looking tables possible.  A few different R libraries make this possible but I've had the best results with Kable and Kableextra.
+LaTeX "booktabs" style tables are the way to go for the best looking tables possible.  A few different R packages make this possible but I've had the best results with Kable and Kableextra.
 
 ### Using Kable and Kableextra
 
 To do.
 
-The Kableextra library gives really nice results, see:  https://github.com/haozhu233/kableExtra
+The Kableextra package gives really nice results, see:  https://github.com/haozhu233/kableExtra
 
 Make sure you are using Knitr (i.e. your file should be saved as a .Rnw file).
 
