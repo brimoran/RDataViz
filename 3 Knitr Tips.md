@@ -7,3 +7,14 @@ https://www.latex-project.org/get/
 http://pandoc.org
 
 To use knitr make sure that knitr instead of sweave is selected in R studio under options to 'Weave Rnw files using:'
+
+## Setting global options
+
+## Chunk settings
+
+### Figure names
+
+### Plot size
+
+### Dependancies
+
