@@ -31,7 +31,7 @@ kable(data, longtable = T, booktabs = T, caption = "This is a table.")%>%
 
 ## Line chart
 
-To do.
+See Line_chart_corporate_colours.R and Line_chart_colour_blind.R
 
 ## Column / Bar chart
 
