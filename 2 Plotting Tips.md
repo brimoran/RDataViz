@@ -157,3 +157,44 @@ scale_y_continuous(labels = comma) # Assumes scales library is loaded
 
 ## Facets
 
+
+## Working with colour
+
+Colour choice matters.  I recommend either sticking with a colour blind safe colour pallete or creating a restrained colour pallete based on one or two colours.  Think about what you are trying to communicate through your charts and use colour to emphasise this.
+
+
+### Colour blind safe colours
+
+The scales package provides good colour blind friendly palletes based on those provided by Tableau.  To view this pallete use:
+
+```r
+library("scales")
+show_col(tableau_color_pal('colorblind10')(10))
+```
+
+To use in your plots, add the following line as part of your ggplot:
+
+```r
+scale_colour_tableau(name = "","colorblind10") # use Tableau colour blind pallete
+```
+
+
+### Getting a range of colours
+
+A quick method to get a range of colours:
+
+```r
+colfunc <- colorRampPalette(c("#8E0A26", "white")) # Create colour gradient between two colours
+colfunc(6) # print 6 colours in the range
+colfunc(20) # print 20 colours in the range
+```
+
+### Defining colour scales
+
+
+#### Continuous scales
+
+
+#### Discrete scales
+
+
