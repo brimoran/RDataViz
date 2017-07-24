@@ -1,6 +1,6 @@
 # R tips
 
-This section is not intended to provide a comprehensive primer for R.  Rather it is a collection of the useful tips that the data viz examples use and an opportunity for me to explain why they are used.
+This section is not intended to provide a comprehensive primer for R.  Rather it is a collection of the useful tips that the data viz examples use.  It is also an opportunity for me to explain why they are used.
 
 ## Working directory
 
