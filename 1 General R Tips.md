@@ -35,7 +35,7 @@ In this case ggplot2, ggthemes, ggmap and scales will be loaded, or installed an
 
 ## Loading data
 
-The examples given here use R's in-built datasets to ensure reproducibility.
+The examples given here either provide dummy data within the R script or use R's in-built datasets to ensure reproducibility.
 
 Each example loads a dataset as data frame  "data".  For example:
 
