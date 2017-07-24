@@ -15,7 +15,7 @@ options(scipen=999) # supress scientific notation
 colfunc <- colorRampPalette(c("#8E0A26", "white")) # set up colour function based on corporate colour, in this case #8E0A26
 
 # prepare to print to pdf
-pdf(file="operatingresults.pdf", width = 8, height = 4.5) # 16 by 9 ratio, change filename accordingly
+pdf(file="Line_chart_corporate_colours.pdf", width = 8, height = 4.5) # 16 by 9 ratio, change filename accordingly
 
 # Line plot
 

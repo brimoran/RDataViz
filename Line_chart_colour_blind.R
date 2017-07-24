@@ -15,7 +15,7 @@ options(scipen=999) # supress scientific notation
 colPalette <- c(tableau_color_pal('colorblind10')(10))
 
 # prepare to print to pdf
-pdf(file="operatingresults_colour_blind.pdf", width = 8, height = 4.5) # 16 by 9 ratio, change filename accordingly
+pdf(file="Line_chart_colour_blind.pdf", width = 8, height = 4.5) # 16 by 9 ratio, change filename accordingly
 
 # Line plot
 
