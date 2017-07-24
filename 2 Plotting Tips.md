@@ -11,7 +11,7 @@ A ggplot graphic is therefore built up by lines of code which layer each element
 
 It's a simple but powerful idea and can be used to build extremely good charts.
 
-For example, the following code produces a basic line plot:
+For example, the following code produces a basic scatter plot:
 
 ```r
 data <- women # load data
@@ -20,8 +20,7 @@ ggplot(data, aes(x = weight, y = height)) +
   geom_point() # adding the points
 ```
 
-The first line loads the data, in this case one of R's in-built datasets.  The second line tells ggplot which data source to use and outlines the basic aesthetics "aes" for the plot.  The third line adds a geometric shape "geom" to the plot.
-
+The first line loads the data, in this case one of R's in-built datasets.  The second line tells ggplot which data source to use and outlines the basic aesthetics "aes" for the plot.  The third line adds a geometric shape "geom" to the plot to represent the data.
 
 By adding a further line of code we can add a title to the basic plot.  Note the addition of the '+':
 
@@ -103,7 +102,6 @@ annotate("rect", xmin = 150, xmax = 160, ymin = 67, ymax = 73, alpha = .1)
 geom_smooth(method = "lm", se=FALSE) 
 ```
 
-
 ### Fitted formula
 
 ```r
@@ -129,7 +127,6 @@ Then within your ggplot:
 ```r
 ggtitle("Average Heights and Weights for American Women", subtitle = paste0(chart_sub))
 ```
-
 
 ## ggthemes
 
