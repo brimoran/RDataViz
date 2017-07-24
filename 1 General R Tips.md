@@ -62,15 +62,18 @@ str(data) # Check structure of data
 
 Files sourced in a corporate environment are often messy.
 
-By defining and using a clean function we can make sure that numeric csv data is cleansed of common extraneous characters (commas, pound signs etc.) that would cause problems with analysis in R.
-
-To apply to the entire data frame of variables (be careful in using this as it will bork any variables in your data frame which you need to be non-numeric):
+By defining and using a clean function we can make sure that numeric csv data is cleansed of common extraneous characters (commas, pound signs etc.) that would cause problems with analysis in R:
 
 ```r
 clean <- function(ttt){
 as.numeric( gsub('[^a-zA-Z0-9.]', '', ttt))
 }
-data[] <- sapply(data, clean)
+```
+
+To apply to the entire data frame of variables (be careful in using this as it will bork any variables in your data frame which you need to be non-numeric):
+
+```r
+data[] <- sapply(data, clean) # Assumes that the clean function has already been created
 ```
 Example from code published at: http://earlh.com/blog/2009/06/29/cleaning-data-in-r-csv-files/
 
@@ -129,7 +132,7 @@ With scientific notation suppressed, the number one million will be shown by R a
 
 ## Subsetting data
 
-Subsetting can be easily achieved in R by using the "subset" command.  Use normal R lofical operators for equivalent to "==", not equivalent to "!=", and "&", or "|" [etc](http://www.statmethods.net/management/operators.html).
+Subsetting can be easily achieved in R by using the "subset" command.  Use normal R logical operators for equivalent to "==", not equivalent to "!=", and "&", or "|" [etc](http://www.statmethods.net/management/operators.html).
 
 ```r
 subsetdata <- subset(data, YOURVARIABLENAME != "YOURCHARACTERVALUE" &  YOUROTHERVARIABLENAME > YOURNUMERICVALUE) # subset the data
