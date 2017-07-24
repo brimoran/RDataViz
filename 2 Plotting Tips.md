@@ -193,15 +193,27 @@ colfunc(20) # print 20 colours in the range
 
 ### Defining colour scales
 
+Create a colour function to be used in your own scales.
 
+A gradient:
 
-For fills:
+```r
+colPallete <- colorRampPalette(c("#8E0A26", "white")) # set up colour function based on corporate colour, in this case #8E0A26
+```
+
+Using Tableau colour blind scheme:
+
+```r
+colPalette <- c(tableau_color_pal('colorblind10')(10)) # assumes scales package is loaded
+```
+
+Then use, for fills:
 
 ```r
   scale_fill_manual(values=colPalette)
 ```
 
-:
+Or for points and lines:
 
 ```r
   scale_colour_manual(values=colPalette) 
