@@ -198,7 +198,7 @@ Create a colour function to be used in your own scales.
 A gradient:
 
 ```r
-colPallete <- colorRampPalette(c("#8E0A26", "white")) # set up colour function based on corporate colour, in this case #8E0A26
+colPalette <- colorRampPalette(c("#8E0A26", "white")) # set up colour function based on corporate colour, in this case #8E0A26
 ```
 
 Using Tableau colour blind scheme:
