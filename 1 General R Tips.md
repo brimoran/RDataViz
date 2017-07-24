@@ -70,13 +70,13 @@ as.numeric( gsub('[^a-zA-Z0-9.]', '', ttt))
 }
 ```
 
+Example from code published at: http://earlh.com/blog/2009/06/29/cleaning-data-in-r-csv-files/
+
 To apply to the entire data frame of variables (be careful in using this as it will bork any variables in your data frame which you need to be non-numeric):
 
 ```r
 data[] <- sapply(data, clean) # Assumes that the clean function has already been created
 ```
-Example from code published at: http://earlh.com/blog/2009/06/29/cleaning-data-in-r-csv-files/
-
 
 To apply to a single variable:
 
