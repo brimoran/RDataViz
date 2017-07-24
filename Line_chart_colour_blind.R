@@ -8,7 +8,11 @@ for (package in c('ggplot2', 'ggthemes', 'scales')) {
   }
 }
 
-data <- read.csv("financial_results.csv",header=TRUE) # Read csv file. 
+# Creating simulated data, replace with:
+# data <- read.csv("YOURFILENAME.csv",header=TRUE)
+data <- data.frame(Variable=c("a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c"), 
+                   Result=c(50, 43, 22, 54, 37, 29, 57, 39, 32, 54, 33, 38), 
+                   Year=c(2016, 2016, 2016, 2017, 2017, 2017, 2018, 2018, 2018, 2019, 2019, 2019))
 
 options(scipen=999) # supress scientific notation
 
@@ -22,15 +26,12 @@ pdf(file="Line_chart_colour_blind.pdf", width = 8, height = 4.5) # 16 by 9 ratio
 ggplot(data, aes(x = Year, y = Result, group = Variable, color = Variable)) +
   geom_line() +
   geom_point(size = 1.1) + 
-  ggtitle("Operating Results") +
+  ggtitle("Your Title") +
   labs(x = "Year", 
-       y = "£k") +
+       y = "Units") +
   theme_hc() +
   scale_y_continuous(labels = comma) +
-  scale_colour_manual(values = colPalette) + 
-  annotate("rect", xmin = 2017, xmax = 2018, ymin = 0, ymax = 80000,
-           alpha = .1) + # adding shaded area
-  annotate("text", label="Forecast", color = "gray", x=2017.5, y=77000, size=3) # adding annotation
+  scale_colour_manual(values = colPalette)
 
 # output pdf
 dev.off()
