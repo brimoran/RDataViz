@@ -160,6 +160,10 @@ scale_y_continuous(labels = comma) # Assumes scales library is loaded
 
 ### Specifying breaks 
 
+```r
+scale_x_continuous(breaks=c(2016, 2017, 2018, 2019))
+```
+
 ## Facets
 
 
