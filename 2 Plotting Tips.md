@@ -130,7 +130,7 @@ ggtitle("Average Heights and Weights for American Women", subtitle = paste0(char
 
 ## ggthemes
 
-The ggthemes library presents themes for the overall aesthetic of a plot made in ggplot2.  The templates are based on good practice examples such as High Charts, Tableau and The Economist... and even some not-so-good practice, tongue-in-cheek examples like Excel!
+The ggthemes library presents themes for the overall aesthetic of a plot made in ggplot2.  The templates are based on good practice examples such as High Charts and The Economist... and even some not-so-good practice, tongue-in-cheek examples like Excel!
 
 I like to use the High Charts theme as it has a good [data ink](http://www.darkhorseanalytics.com/blog/data-looks-better-naked) ratio.  I use different colours than the default choices however.
 
