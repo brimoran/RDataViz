@@ -1,6 +1,6 @@
 # RDataViz
 
-Examples of data viz using R with an emphasis on good practice in visual design for a 'corporate' rather than for a scientific audience.
+Examples of data viz using R emphasising: a) good practice in visual design for a 'corporate' rather than for a scientific audience; and b) simplicity of reproduction and reuse.
 
 All examples tested with R version 3.4.0 and assume that R Studio is being used, tested with version 1.0.143.
 
