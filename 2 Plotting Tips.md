@@ -155,6 +155,8 @@ For the y axis:
 scale_y_continuous(labels = comma) # Assumes scales library is loaded
 ```
 
+### Specifying breaks 
+
 ## Facets
 
 
@@ -191,6 +193,19 @@ colfunc(20) # print 20 colours in the range
 
 ### Defining colour scales
 
+
+
+For fills:
+
+```r
+  scale_fill_manual(values=colPalette)
+```
+
+:
+
+```r
+  scale_colour_manual(values=colPalette) 
+```
 
 #### Continuous scales
 
