@@ -24,7 +24,14 @@ kable(data, longtable = T, booktabs = T, caption = "This is a table.")%>%
 @
 ```
 
-Thanks to cmhughes for explaining how to format table captions in LaTeX, see: http://tex.stackexchange.com/questions/86120/font-size-of-figure-caption-header
+The full script demonstrates:
+
+* Setting global options in knitr so that code is not displayed in the rendered PDF.
+* Controlling the format of table captions.
+* Removing page numbers from the rendered PDF.
+
+Thanks to cmhughes for [http://tex.stackexchange.com/questions/86120/font-size-of-figure-caption-header](this helpful post) which taught me how to format table captions in LaTeX. 
+
 
 ## Line chart
 
