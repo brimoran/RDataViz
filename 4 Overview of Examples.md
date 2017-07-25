@@ -6,15 +6,11 @@ This section summarises the examples contained in the "Examples" folder.
 
 See Table.Rnw
 
-LaTeX "booktabs" style tables are the way to go for the best looking tables possible.  A few different R packages make this possible but I've had the best results with Kable and Kableextra.
+Sorry to begin with an example that requires some understanding of LaTeX but LaTeX "booktabs" style tables are the way to go for the best looking tables possible and hopefully the LaTeX elements are explained clearly enough.
 
-### Using Kable and Kableextra
+A few different R packages make it possible to automate booktabs style tables, but my preference is using Kable and Kableextra.
 
-To do.
-
-The Kableextra package gives really nice results, see:  https://github.com/haozhu233/kableExtra
-
-Make sure you are using Knitr (i.e. your file should be saved as a .Rnw file).
+For the example to work make sure you are able to use Knitr in your R installation (see section 3 Knitr Tips).
 
 The key part of the code is:
 
@@ -28,6 +24,7 @@ kable(data, longtable = T, booktabs = T, caption = "This is a table.")%>%
 @
 ```
 
+Thanks to cmhughes for explaining how to format table captions in LaTeX, see: http://tex.stackexchange.com/questions/86120/font-size-of-figure-caption-header
 
 ## Line chart
 
