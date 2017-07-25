@@ -18,8 +18,17 @@ knitr::opts_chunk$set(
 \thispagestyle{empty} % to remove page number from page
 
 <<Your reference to the chunk>>=
-library(kableExtra)
-data <- mtcars[1:5, 1:6] # Change for your data
+
+#Load required libraries (installing them if necessary)
+for (package in c('kableExtra')) {
+  if (!require(package, character.only=T, quietly=T)) {
+    install.packages(package)
+    library(package, character.only=T)
+  }
+}
+
+data <- mtcars[1:5, 1:6] # Load data
+
 options(knitr.table.format = "latex")
 kable(data, longtable = T, booktabs = T, caption = "This is a table.")%>%
   kable_styling(font_size = 10)
