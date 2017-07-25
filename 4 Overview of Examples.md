@@ -12,16 +12,12 @@ A few different R packages make it possible to automate booktabs style tables, b
 
 For the example to work make sure you are able to use Knitr in your R installation (see section 3 Knitr Tips).
 
-The key part of the code is this knitr chunk:
+The key part of the code to build the table is within the knitr chunk: ```<<Your reference to the chunk>>=```
 
 ```r
-<<Your reference to the chunk>>=
-library(kableExtra) # Assuming that knitr library is already loaded
-data <- mtcars[1:5, 1:6]
 options(knitr.table.format = "latex")
 kable(data, longtable = T, booktabs = T, caption = "This is a table.")%>%
   kable_styling(font_size = 10)
-@
 ```
 
 The full script demonstrates:
