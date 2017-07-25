@@ -30,7 +30,7 @@ The full script demonstrates:
 * Controlling the format of table captions.
 * Removing page numbers from the rendered PDF.
 
-Thanks to cmhughes for [http://tex.stackexchange.com/questions/86120/font-size-of-figure-caption-header](this helpful post) which taught me how to format table captions in LaTeX. 
+Thanks to cmhughes for [this helpful post](http://tex.stackexchange.com/questions/86120/font-size-of-figure-caption-header) which taught me how to format table captions in LaTeX. 
 
 
 ## Line chart
