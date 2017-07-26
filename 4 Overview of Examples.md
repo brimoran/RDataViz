@@ -12,6 +12,8 @@ A few different R packages make it possible to automate booktabs style tables, b
 
 For the example to work make sure you are able to use Knitr in your R installation (see section 3 Knitr Tips).
 
+**If you are copying and pasting code rather than downloading my files make sure that you are working in a Rnw file in R Studio: File > New Sweave File.  To run the code,click on the 'Compile PDF' button in R Studio.**
+
 The key part of the code to build the table is within the knitr chunk: ```<<Your reference to the chunk>>=```
 
 ```r
