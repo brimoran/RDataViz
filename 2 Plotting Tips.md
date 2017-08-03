@@ -174,10 +174,10 @@ Colour choice matters.  I recommend either sticking with a colour blind safe col
 
 ### Colour blind safe colours
 
-The ggthemes package provides good colour blind friendly palletes based on those provided by Tableau.  To view this pallete use:
+The scales package provides good colour blind friendly palletes based on those provided by Tableau.  To view this pallete use:
 
 ```r
-library("ggthemes")
+library("scales")
 show_col(tableau_color_pal('colorblind10')(10))
 ```
 
