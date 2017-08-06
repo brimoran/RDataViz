@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 <<Your reference to the chunk>>=
 
 #Load required libraries (installing them if necessary)
-for (package in c('kableExtra')) {
+for (package in c('knitr','kableExtra')) {
   if (!require(package, character.only=T, quietly=T)) {
     install.packages(package)
     library(package, character.only=T)
