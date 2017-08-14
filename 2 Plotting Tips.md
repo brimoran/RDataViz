@@ -174,19 +174,23 @@ Colour choice matters.  I recommend either sticking with a colour blind safe col
 
 ### Colour blind safe colours
 
-The ggthemes package provides good colour blind friendly palletes based on those provided by Tableau.  To view this pallete use:
+The ggthemes package provides good colour blind friendly palletes based on those provided by Tableau and by [Paul Tol](https://personal.sron.nl/~pault/).
+
+To view the Tableau pallete use:
 
 ```r
+library("scales") # To use show_col
 library("ggthemes")
 show_col(tableau_color_pal('colorblind10')(10))
 ```
 
-To use in your plots, add the following line as part of your ggplot:
+To view the Paul Tol pallete use:
 
 ```r
-scale_colour_tableau(name = "","colorblind10") # use Tableau colour blind pallete
+library("scales") # To use show_col
+library("ggthemes")
+show_col(ptol_pal()(9))
 ```
-
 
 ### Getting a range of colours
 
@@ -208,7 +212,7 @@ A gradient:
 colPalette <- colorRampPalette(c("#8E0A26", "white")) # set up colour function based on corporate colour, in this case #8E0A26
 ```
 
-Using Tableau colour blind scheme:
+e.g. Using Tableau colour blind scheme:
 
 ```r
 colPalette <- c(tableau_color_pal('colorblind10')(10)) # assumes scales package is loaded

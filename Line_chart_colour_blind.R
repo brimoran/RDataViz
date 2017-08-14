@@ -16,7 +16,8 @@ data <- data.frame(Variable=c("a", "b", "c", "a", "b", "c", "a", "b", "c", "a", 
 
 options(scipen=999) # supress scientific notation
 
-colPalette <- c(tableau_color_pal('colorblind10')(10))
+colPalette <- c(ptol_pal()(nlevels(data$Variable)))
+#colPalette <- c(tableau_color_pal('colorblind10')(nlevels(data$Variable))) # alternative
 
 # prepare to print to pdf
 pdf(file="Line_chart_colour_blind.pdf", width = 8, height = 4.5) # 16 by 9 ratio, change filename accordingly
