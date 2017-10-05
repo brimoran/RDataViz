@@ -90,6 +90,14 @@ To apply to specific variables in the data frame:
 data[,c("YOURVARIABLENAME","YOUROTHERVARIABLENAME")] <- sapply(data, clean) # Assumes that the clean function has already been created, change text in capitals
 ```
 
+#### Using gsub
+
+An alternative approach is to use gsub which replaces all matches of a particular character (string).  For example to remove pound signs:
+
+```r
+data$YOURVARIABLENAME <- gsub("£", "", paste(data$YOURVARIABLENAME)) # remove £
+```
+
 #### Removing incomplete data
 
 Removing rows of incomplete data is not necessary for plotting but is required for some analysis you may need to undertake prior to plotting.  Only use if incomplete data is causing problems in your workflow:
@@ -97,6 +105,22 @@ Removing rows of incomplete data is not necessary for plotting but is required f
 ```r
 data <- na.omit(data) # deletes rows with missing data
 ```
+
+## Tidy column headings (variable names)
+
+```r
+names(data)[names(data) == 'YOUROLDNAME'] <- 'YOURNEWNAME'
+```
+
+## Converting data recognised as a character format into a numeric format
+
+If your 'numeric' data is messy and contains characters such as '£'s, ','s or 'm's for example, R will recognise this in a character format.  Chances are you will need it to be recognised as numeric, so after you clean it you will need to concert it to numeric data:
+
+```r
+data$YOURVARIABLENAME <- as.numeric(as.character(data$YOURVARIABLENAME))
+```
+
+
 
 ## Working with dates
 
