@@ -98,6 +98,12 @@ An alternative approach is to use gsub which replaces all matches of a particula
 data$YOURVARIABLENAME <- gsub("£", "", paste(data$YOURVARIABLENAME)) # remove £
 ```
 
+#### Limiting data to a few columns of interest
+
+```r
+data <- data[,c("YOURVARIABLENAME","YOUROTHERVARIABLENAME")]
+```
+
 #### Removing incomplete data
 
 Removing rows of incomplete data is not necessary for plotting but is required for some analysis you may need to undertake prior to plotting.  Only use if incomplete data is causing problems in your workflow:
