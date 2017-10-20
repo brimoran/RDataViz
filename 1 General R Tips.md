@@ -228,5 +228,5 @@ Assuming you have created a ggplot named 'plot' and have already installed the p
 library(plotly)
 plot <- ggplotly(plot)
 library(htmlwidgets)
-saveWidget(plot, file="ceo_pay_2016_17.html")
+saveWidget(plot, file="plot.html")
 ```
