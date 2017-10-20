@@ -217,3 +217,16 @@ png(file="FILENAME.png", width = 1600, height = 900) # 16 by 9 ratio, change tex
 
 dev.off() # output file
 ```
+
+##### Output to HTML
+
+The plotly library works well with ggplots.
+
+Assuming you have created a ggplot named 'plot' and have already installed the plotly and htmlwidgets libraries, the following code will output your plot as an interactive HTML page:
+
+```r
+library(plotly)
+plot <- ggplotly(plot)
+library(htmlwidgets)
+saveWidget(plot, file="ceo_pay_2016_17.html")
+```
