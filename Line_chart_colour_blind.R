@@ -1,5 +1,3 @@
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path)) # set working directory
-
 #Load required libraries (installing them if necessary)
 for (package in c('ggplot2', 'ggthemes', 'scales')) {
   if (!require(package, character.only=T, quietly=T)) {
