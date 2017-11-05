@@ -120,7 +120,7 @@ names(data)[names(data) == 'YOUROLDNAME'] <- 'YOURNEWNAME'
 
 ## Converting data recognised as a character format into a numeric format
 
-If your 'numeric' data is messy and contains characters such as '£'s, ','s or 'm's for example, R will recognise this in a character format.  Chances are you will need it to be recognised as numeric, so after you clean it you will need to concert it to numeric data:
+If your 'numeric' data is messy and contains characters such as '£'s, ','s or 'm's for example, R will recognise this in a character format.  Chances are you will need it to be recognised as numeric, so after you clean it you will need to convert it to numeric data:
 
 ```r
 data$YOURVARIABLENAME <- as.numeric(as.character(data$YOURVARIABLENAME))
