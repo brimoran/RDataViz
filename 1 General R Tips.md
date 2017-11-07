@@ -112,6 +112,12 @@ Removing rows of incomplete data is not necessary for plotting but is required f
 data <- na.omit(data) # deletes rows with missing data
 ```
 
+Alternatively, to remove rows where a particular variable is missing data:
+
+```r
+data <- data[!(is.na(data$YOURVARIABLENAME) | data$YOURVARIABLENAME==""), ]
+```
+
 ## Tidy column headings (variable names)
 
 ```r
