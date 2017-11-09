@@ -118,6 +118,12 @@ Alternatively, to remove rows where a particular variable is missing data:
 data <- data[!(is.na(data$YOURVARIABLENAME) | data$YOURVARIABLENAME==""), ]
 ```
 
+Or to remove entire blank rows:
+
+```r
+data <- data[!apply(is.na(data) | data == "", 1, all),] # remove rows wth NAs or blanks
+```
+
 ## Tidy column headings (variable names)
 
 ```r
