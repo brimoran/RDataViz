@@ -168,6 +168,22 @@ Note the substitution of '/' with '-' in this example.
 data <- data[order(as.Date(data$YOURDATEVARIABLE,format="%Y/%m/%d")),,drop=FALSE] # order by date
 ```
 
+### Aggregate by Date
+
+```r
+byday <- aggregate(cbind(YOURVARIABLENAME)~Date, data=data,FUN=sum)
+library(lubridate)
+byday$Month <- floor_date(byday$YOURVARIABLENAME, "month") # Get dates into month bins (requires lubridate)
+```
+
+### Create a Dataframe of Dates
+
+```r
+library(lubridate)
+dates <- as.data.frame(seq(ymd('2014-04-01'),ymd('2017-10-01'),by='month')) # create a data frame of months
+colnames(dates) <- c("Month") # correct column name
+```
+
 ## Suppressing scientific notation
 
 We are producing data viz for business here and so it is useful to suppress scientific notation, i.e. we would rather show the number one million as 1,000,000 than as 1e6.  To get part of the way towards this use the following code in your R script prior to plotting:
@@ -199,10 +215,16 @@ You can use Grep to subset on particular patterns:
 data <- data[!grepl("this text",data$YOURVARIABLENAME),] # remove case with "this text" in YOURVARIABLE NAME
 ```
 
-### Exporting plots
+## Joins
+
+```r
+merged <- merge(x = LEFTDATAFRAME, y = RIGHTDATAFRAME, by = "COMMONVARIABLE", all = TRUE) # outer join
+```
+
+## Exporting plots
 
 
-#### Plot dimensions
+### Plot dimensions
 
 One of the big advantages of using R to produce dataviz is the consistency that can be achieved from one plot to the next.
 
@@ -216,11 +238,11 @@ A 16:9 aspect ratio tends to work well for plots to be included within a documen
 A 4:3 aspect ratio works well for plots that will be viewed full-screen on a tablet which is common in a corporate setting.
 
 
-#### Plotting to file
+### Plotting to file
 
 As a vector format, the PDF file format offers high fidelity output.  PDF files can prove difficult to print however if they use excessive transparencies.  For example, a plot of a map that shows thousands of individual, overlaid semi-transparent points will probably fail to flatten when printing.  In such cases a better choice would be to use a raster format such as a PNG file.
 
-##### Output to PDF
+#### Output to PDF
 
 Surround your plot with the following code:
 
@@ -232,7 +254,7 @@ pdf(file="FILENAME.pdf", width = 8, height = 4.5) # Prepare to output PDF with 1
 dev.off() # output file
 ```
 
-##### Output to PNG
+#### Output to PNG
 
 Surround your plot with the following code:
 
@@ -244,7 +266,7 @@ png(file="FILENAME.png", width = 1600, height = 900) # 16 by 9 ratio, change tex
 dev.off() # output file
 ```
 
-##### Output to HTML
+#### Output to HTML
 
 The plotly library works well with ggplots.
 
