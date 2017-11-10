@@ -162,6 +162,12 @@ data$YOURVARIABLENAME <- as.Date(data$YOURVARIABLENAME, "%Y-%m-%d") # transform 
 
 Note the substitution of '/' with '-' in this example.
 
+### Order by Date
+
+```r
+data <- data[order(as.Date(data$YOURDATEVARIABLE,format="%Y/%m/%d")),,drop=FALSE] # order by date
+```
+
 ## Suppressing scientific notation
 
 We are producing data viz for business here and so it is useful to suppress scientific notation, i.e. we would rather show the number one million as 1,000,000 than as 1e6.  To get part of the way towards this use the following code in your R script prior to plotting:
