@@ -191,6 +191,14 @@ Alternatively, and [prefered](https://stackoverflow.com/questions/9860090/why-is
 subsetdata <- data[data$YOURVARIABLENAME != "YOURCHARACTERVALUE" & data$YOUROTHERVARIABLENAME > YOURNUMERICVALUE, ]
 ```
 
+### Grep
+
+You can use Grep to subset on particular patterns:
+
+```r
+data <- data[!grepl("this text",data$YOURVARIABLENAME),] # remove case with "this text" in YOURVARIABLE NAME
+```
+
 ### Exporting plots
 
 
