@@ -212,7 +212,15 @@ subsetdata <- data[data$YOURVARIABLENAME != "YOURCHARACTERVALUE" & data$YOUROTHE
 You can use Grep to subset on particular patterns:
 
 ```r
-data <- data[!grepl("this text",data$YOURVARIABLENAME),] # remove case with "this text" in YOURVARIABLE NAME
+subsetdata <- data[!grepl("this text",data$YOURVARIABLENAME),] # remove case with "this text" in YOURVARIABLE NAME
+```
+
+### Duplicates
+
+You can subset to remove duplicates in your data frame as follows:
+
+```r
+subsetdata <- data[!duplicated(data$YOURVARIABLENAME), ]
 ```
 
 ## Joins
