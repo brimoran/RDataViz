@@ -223,11 +223,19 @@ You can subset to remove duplicates in your data frame as follows:
 subsetdata <- data[!duplicated(data$YOURVARIABLENAME), ]
 ```
 
-## Joins
+## [Joins](https://en.wikipedia.org/wiki/Join_(SQL))
+
+Example:
 
 ```r
-merged <- merge(x = LEFTDATAFRAME, y = RIGHTDATAFRAME, by = "COMMONVARIABLE", all = TRUE) # outer join
+merged <- merge(x = LEFTDATAFRAME, y = RIGHTDATAFRAME, by.x = "LEFTCOMMONVARIABLE", by.y='RIGHTCOMMONVARIABLE', all.x=TRUE) # left outer join
 ```
+Nice summary from [Data Science Made Simple](http://www.datasciencemadesimple.com/join-in-r-merge-in-r/):
+
+- **Natural join**: To keep only rows that match from the data frames, specify the argument all=FALSE.
+- **Full outer join**:To keep all rows from both data frames, specify all=TRUE.
+- **Left outer join**:To include all the rows of your data frame x and only those from y that match, specify x=TRUE.
+- **Right outer join**:To include all the rows of your data frame y and only those from x that match, specify y=TRUE.
 
 ## Exporting plots
 
