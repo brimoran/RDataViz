@@ -207,7 +207,7 @@ Alternatively, and [prefered](https://stackoverflow.com/questions/9860090/why-is
 subsetdata <- data[data$YOURVARIABLENAME != "YOURCHARACTERVALUE" & data$YOUROTHERVARIABLENAME > YOURNUMERICVALUE, ]
 ```
 
-### Grep
+### [Grep](https://en.wikipedia.org/wiki/Grep)
 
 You can use Grep to subset on particular patterns:
 
@@ -234,8 +234,8 @@ Nice summary from [Data Science Made Simple](http://www.datasciencemadesimple.co
 
 - **Natural join**: To keep only rows that match from the data frames, specify the argument all=FALSE.
 - **Full outer join**:To keep all rows from both data frames, specify all=TRUE.
-- **Left outer join**:To include all the rows of your data frame x and only those from y that match, specify x=TRUE.
-- **Right outer join**:To include all the rows of your data frame y and only those from x that match, specify y=TRUE.
+- **Left outer join**:To include all the rows of your data frame x and only those from y that match, specify all.x=TRUE.
+- **Right outer join**:To include all the rows of your data frame y and only those from x that match, specify all.y=TRUE.
 
 ## Exporting plots
 
