@@ -98,6 +98,12 @@ An alternative approach is to use gsub which replaces all matches of a particula
 data$YOURVARIABLENAME <- gsub("£", "", paste(data$YOURVARIABLENAME)) # remove £
 ```
 
+#### Changing a sngle value
+
+```r
+data[ROWNUMBER, COLUMNNUMBER] = NEWVALUE # changing a single value - row then column
+```
+
 #### Limiting data to a few columns of interest
 
 ```r
