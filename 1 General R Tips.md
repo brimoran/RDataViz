@@ -229,7 +229,7 @@ You can subset to remove duplicates in your data frame as follows:
 subsetdata <- data[!duplicated(data$YOURVARIABLENAME), ]
 ```
 
-## [Joins](https://en.wikipedia.org/wiki/Join_(SQL))
+## Horizontal [Joins](https://en.wikipedia.org/wiki/Join_(SQL))
 
 Example:
 
@@ -242,6 +242,12 @@ Nice summary from [Data Science Made Simple](http://www.datasciencemadesimple.co
 - **Full outer join**:To keep all rows from both data frames, specify all=TRUE.
 - **Left outer join**:To include all the rows of your data frame x and only those from y that match, specify all.x=TRUE.
 - **Right outer join**:To include all the rows of your data frame y and only those from x that match, specify all.y=TRUE.
+
+## Vertical joins (stacking) data frames
+
+```r
+merged <- rbind(DATAFRAME1, DATAFRAME2)
+```
 
 ## Exporting plots
 
