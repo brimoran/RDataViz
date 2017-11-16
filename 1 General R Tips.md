@@ -213,7 +213,7 @@ subsetdata <- data[data$YOURVARIABLENAME != "YOURCHARACTERVALUE" & data$YOUROTHE
 
 ### [Grep](https://en.wikipedia.org/wiki/Grep)
 
-You can use Grep to subset on particular patterns of characters in your data.  This example subsets cases where "this text" is present in ```data$YOURVARIABLENAME```:
+You can use Grep to subset on particular patterns of characters in your data.  This example subsets cases so those where "this text" is present in ```data$YOURVARIABLENAME``` are not included:
 
 ```r
 subsetdata <- data[!grepl("this text",data$YOURVARIABLENAME),] # remove case with "this text" in YOURVARIABLE NAME
