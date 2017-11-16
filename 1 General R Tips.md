@@ -144,8 +144,6 @@ If your 'numeric' data is messy and contains characters such as '£'s, ','s or '
 data$YOURVARIABLENAME <- as.numeric(as.character(data$YOURVARIABLENAME))
 ```
 
-
-
 ## Working with dates
 
 You need to be explicit about date formats in R.  Use as.Date to tell R to change a field in your data frame to a particular date format. 
@@ -215,8 +213,7 @@ subsetdata <- data[data$YOURVARIABLENAME != "YOURCHARACTERVALUE" & data$YOUROTHE
 
 ### [Grep](https://en.wikipedia.org/wiki/Grep)
 
-You can use Grep to subset on particular patterns of characters in your data.  This example subsets cases where "this text" is present in ```r
-data$YOURVARIABLENAME```:
+You can use Grep to subset on particular patterns of characters in your data.  This example subsets cases where "this text" is present in ```data$YOURVARIABLENAME```:
 
 ```r
 subsetdata <- data[!grepl("this text",data$YOURVARIABLENAME),] # remove case with "this text" in YOURVARIABLE NAME
@@ -245,6 +242,8 @@ Nice summary from [Data Science Made Simple](http://www.datasciencemadesimple.co
 - **Right outer join**:To include all the rows of your data frame y and only those from x that match, specify all.y=TRUE.
 
 ## Vertical joins (stacking) data frames
+
+To stack one dataframe on top of another, make sure that the number of columns and names are identical and then:
 
 ```r
 merged <- rbind(DATAFRAME1, DATAFRAME2)
