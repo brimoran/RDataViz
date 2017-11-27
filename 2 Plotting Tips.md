@@ -192,6 +192,15 @@ library("ggthemes")
 show_col(ptol_pal()(9))
 ```
 
+Google Material Design equivalents to Paul Tol colours:
+
+```r
+#Google Material Design colours closest to Paul Tol (4 colour pallete for maps)
+factpal <- colorFactor(
+  palette = c('#9e9e9e','#3f51b5', '#f06292','#d4e157','#2e7d32'),
+  domain = data$YOURVARIABLENAME)
+```
+
 ### Getting a range of colours
 
 A quick method to get a range of colours:
