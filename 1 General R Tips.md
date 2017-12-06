@@ -96,6 +96,12 @@ To apply to specific variables in the data frame:
 data[,c("YOURVARIABLENAME","YOUROTHERVARIABLENAME")] <- sapply(data, clean) # Assumes that the clean function has already been created, change text in capitals
 ```
 
+#### Trim white space
+
+```r
+data < - trimws(data, which = c("both")) # trims white space either side of string
+```
+
 #### Using gsub
 
 An alternative approach is to use gsub which replaces all matches of a particular character (string).  For example to remove pound signs:
