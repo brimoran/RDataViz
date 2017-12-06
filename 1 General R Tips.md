@@ -58,6 +58,12 @@ In R Studio you can easily view data through the GUI.  Sometimes it is more conv
 str(data) # Check structure of data
 ```
 
+## Transposing data
+
+```r
+data <- as.data.frame(t(data))
+```
+
 ## Cleaning imported data
 
 Files sourced in a corporate environment are often messy.
