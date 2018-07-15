@@ -60,6 +60,12 @@ In R Studio you can easily view data through the GUI.  Sometimes it is more conv
 str(data) # Check structure of data
 ```
 
+## Transposing data
+
+```r
+data <- as.data.frame(t(data))
+```
+
 ## Cleaning imported data
 
 Files sourced in a corporate environment are often messy.
@@ -90,6 +96,12 @@ To apply to specific variables in the data frame:
 
 ```r
 data[,c("YOURVARIABLENAME","YOUROTHERVARIABLENAME")] <- sapply(data, clean) # Assumes that the clean function has already been created, change text in capitals
+```
+
+#### Trim white space
+
+```r
+data < - trimws(data, which = c("both")) # trims white space either side of string
 ```
 
 #### Using gsub

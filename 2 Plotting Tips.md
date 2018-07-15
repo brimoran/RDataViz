@@ -192,6 +192,15 @@ library("ggthemes")
 show_col(ptol_pal()(9))
 ```
 
+Google Material Design equivalents to Paul Tol colours:
+
+```r
+#Google Material Design colours closest to Paul Tol (4 colour pallete for maps)
+factpal <- colorFactor(
+  palette = c('#9e9e9e','#3f51b5', '#f06292','#d4e157','#2e7d32'),
+  domain = data$YOURVARIABLENAME)
+```
+
 ### Getting a range of colours
 
 A quick method to get a range of colours:
@@ -203,6 +212,14 @@ colfunc(20) # print 20 colours in the range
 ```
 
 ### Defining colour scales
+
+Setting specific colours:
+
+```r
+# An orange-blue gradient based on Google's material design pallete https://material.io/guidelines/style/color.html
+materialOrgBlu <- c("#e65100", "#ef6c00","#f57c00", "#fb8c00","#ff9800","#ffa726", "#ffb74d", "#ffcc80","#ffe0b2","#fff3e0",
+            "#e3f2fd","#bbdefb", "#90caf9","#64b5f6","#42a5f5","#2196f3","#1e88e5","#1976d2", "#1565c0","#0d47a1")
+```
 
 Create a colour function to be used in your own scales.
 
