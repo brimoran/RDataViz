@@ -263,6 +263,10 @@ To stack one dataframe on top of another, make sure that the number of columns a
 merged <- rbind(DATAFRAME1, DATAFRAME2)
 ```
 
+## Exporting to csv
+
+```write.csv(data, file = "FILENAME.csv")```
+
 ## Exporting plots
 
 
