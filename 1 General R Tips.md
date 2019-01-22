@@ -66,6 +66,12 @@ str(data) # Check structure of data
 data <- as.data.frame(t(data))
 ```
 
+## Stacking data
+
+```r
+data <- stack(data) # transform separate columns into a single vector with two columns (values and ind)
+```
+
 ## Cleaning imported data
 
 Files sourced in a corporate environment are often messy.
