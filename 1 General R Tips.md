@@ -127,7 +127,7 @@ An alternative approach is to use gsub which replaces all matches of a particula
 data$YOURVARIABLENAME <- gsub("£", "", paste(data$YOURVARIABLENAME)) # remove £
 ```
 
-#### Changing a sngle value
+#### Changing a single value
 
 ```r
 data[ROWNUMBER, COLUMNNUMBER] = NEWVALUE # changing a single value - row then column
@@ -137,6 +137,12 @@ data[ROWNUMBER, COLUMNNUMBER] = NEWVALUE # changing a single value - row then co
 
 ```r
 data <- data[,c("YOURVARIABLENAME","YOUROTHERVARIABLENAME")]
+```
+
+Alternatively, specify the columns you want to remove:
+
+```r
+data <- data[, -c(0:2)] # Drop first two columns
 ```
 
 #### Removing incomplete data
