@@ -63,7 +63,16 @@ str(data) # Check structure of data
 ## Transposing data
 
 ```r
-data <- as.data.frame(t(data))
+library(tibble)
+library(dplyr)
+
+data <- data %>%
+  t() %>%
+  as.data.frame(stringsAsFactors = F) %>%
+  rownames_to_column("value") %>%
+  `colnames<-`(.[1,]) %>%
+  .[-1,] %>%
+  `rownames<-`(NULL)
 ```
 
 ## Stacking data
@@ -150,6 +159,31 @@ Or to remove entire blank rows:
 data <- data[!apply(is.na(data) | data == "", 1, all),] # remove rows wth NAs or blanks
 ```
 
+To remove rows which only contain NA values:
+
+```r
+data <- data[rowSums(is.na(data)) != ncol(data),] # Drop rows which are entirely NA
+```
+
+Likewise for columns:
+
+```r
+data <- data[,colSums(is.na(data))<nrow(data)] # Drop columns which are entirely NA
+```
+
+Alternatively, remove columns that contain any NA values:
+
+```r
+data <- data[ , colSums(is.na(data)) == 0] # remove columns which contain any NAs
+```
+
+Or to remove columns that only contain zeros:
+
+```r
+data <- data[, colSums(data != 0) > 0] # remove columns which sum to zero
+```
+
+
 ## Tidy column headings (variable names)
 
 ```r
@@ -162,6 +196,12 @@ If your 'numeric' data is messy and contains characters such as '£'s, ','s or '
 
 ```r
 data$YOURVARIABLENAME <- as.numeric(as.character(data$YOURVARIABLENAME))
+```
+
+Change the entire dataframe to numeric:
+
+```r
+data[] <- lapply(data, as.numeric) # make entire dataframe numeric
 ```
 
 ## Working with dates
