@@ -160,8 +160,16 @@ scale_y_continuous(labels = comma) # Assumes scales library is loaded
 
 ### Specifying breaks 
 
+To state what you want:
+
 ```r
 scale_x_continuous(breaks=c(2016, 2017, 2018, 2019))
+```
+
+To calculate a range:
+
+```r
+scale_x_continuous(breaks=seq(0, 300, by = 10))
 ```
 
 ## Facets
