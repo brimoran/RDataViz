@@ -172,6 +172,16 @@ To calculate a range:
 scale_x_continuous(breaks=seq(0, 300, by = 10))
 ```
 
+### Specifying limits
+
+This provides some extra padding either side on the x axis:
+
+```r
+scale_x_date(date_breaks = "3 month", 
+              labels=date_format("%b-%Y"), 
+              limits = as.Date(c(min((data$Date)-31),(max(data$Date)+31)))) +
+```
+
 ## Facets
 
 
