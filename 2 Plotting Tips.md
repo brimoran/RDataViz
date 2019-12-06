@@ -182,6 +182,12 @@ scale_x_date(date_breaks = "3 month",
               limits = as.Date(c(min((data$Date)-31),(max(data$Date)+31)))) +
 ```
 
+### Specifiying number of decimal places
+
+```r
+  scale_y_continuous(labels = scales::number_format(accuracy = 0.1, decimal.mark = '.')) 
+```
+
 ## Facets
 
 
