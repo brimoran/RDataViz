@@ -127,6 +127,12 @@ An alternative approach is to use gsub which replaces all matches of a particula
 data$YOURVARIABLENAME <- gsub("£", "", paste(data$YOURVARIABLENAME)) # remove £
 ```
 
+#### Creating a dummy variable
+
+```r
+data$DUMMYVARIABLE <- as.numeric(data$COLUMNNAME == "CONDITION")
+```
+
 #### Changing a single value
 
 ```r
