@@ -165,6 +165,12 @@ Alternatively, to remove rows where a particular variable is missing data:
 data <- data[!(is.na(data$YOURVARIABLENAME) | data$YOURVARIABLENAME==""), ]
 ```
 
+Similarly:
+
+```r
+data <- data[!(is.na(data$YOURVARIABLENAME) | data$YOURVARIABLENAME=="-"), ] # strip out records that include are NA fields or  just a "-"
+```
+
 Or to remove entire blank rows:
 
 ```r
