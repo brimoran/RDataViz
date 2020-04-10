@@ -201,11 +201,17 @@ Or to remove columns that only contain zeros:
 data <- data[, colSums(data != 0) > 0] # remove columns which sum to zero
 ```
 
-
 ## Tidy column headings (variable names)
 
 ```r
 names(data)[names(data) == 'YOUROLDNAME'] <- 'YOURNEWNAME'
+```
+
+## Change levels/labels in factor
+
+```r
+levels(data$Measure)# check existing levels
+data$Measure <- revalue(data$YOURVARIABLENAME, c("old name"="new name")) # rename factor level requires library("plyr")
 ```
 
 ## Converting data recognised as a character format into a numeric format
