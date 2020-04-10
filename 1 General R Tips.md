@@ -295,6 +295,12 @@ Alternatively, and [prefered](https://stackoverflow.com/questions/9860090/why-is
 subsetdata <- data[data$YOURVARIABLENAME != "YOURCHARACTERVALUE" & data$YOUROTHERVARIABLENAME > YOURNUMERICVALUE, ]
 ```
 
+Note, if after subsetting your levels of factors has (should have) reduced, correct stored levels in R with:
+
+```r
+subsetdata$YOURVARIABLENAME <- factor(subsetdata$YOURVARIABLENAME)
+```
+
 ### [Grep](https://en.wikipedia.org/wiki/Grep)
 
 You can use Grep to subset on particular patterns of characters in your data.  This example subsets cases so those where "this text" is present in ```data$YOURVARIABLENAME``` are not included:
