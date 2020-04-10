@@ -276,4 +276,8 @@ Or for points and lines:
 
 #### Discrete scales
 
+#### Rotate axis labels
 
+```r
+theme(axis.text.x = element_text(angle = 90, hjust = 1)) + # rotate x axis labels
+```
