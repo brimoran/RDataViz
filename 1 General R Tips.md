@@ -199,6 +199,13 @@ Or to remove columns that only contain zeros:
 data <- data[, colSums(data != 0) > 0] # remove columns which sum to zero
 ```
 
+To remove rows that contain specific content:
+
+```r
+data <- data[!(data$YOURVARIABLENAMEr=="The value you don't want"),]# this is a factor so...
+data$Member <- factor(data$YOURVARIABLENAME) # ...restore correct levels
+```
+
 ## Tidy column headings (variable names)
 
 ```r
