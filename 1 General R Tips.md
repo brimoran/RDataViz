@@ -73,6 +73,16 @@ data <- data %>%
   `rownames<-`(NULL)
 ```
 
+## Wide to long format
+
+This example is a common case where data is sourced with a single Date column with the variables you are interested in separated across multiple columns.  Ideally here you want a single date column and a single variable column.  This assumes that the Date column is a factor at the time the script is run (i.e. has not yet been converted to a date format in R):
+
+```r
+# reshape data from wide to long format
+library("reshape2")  
+data <- melt(data, id.vars = c("Date"))
+```
+
 ## Stacking data
 
 ```r
