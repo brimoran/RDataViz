@@ -83,6 +83,15 @@ library("reshape2")
 data <- melt(data, id.vars = c("Date"))
 ```
 
+## Changing the order of data
+
+Use this to change the order that variables will be shown in charting:
+
+```r
+data$YOURVARIABLENAME <- factor(data$YOURVARIABLENAME, levels = c("YOURVARIABLECAT1", "YOURVARIABLECAT1", "YOURVARIABLECAT1")) # change order for key
+
+```
+
 ## Stacking data
 
 ```r
