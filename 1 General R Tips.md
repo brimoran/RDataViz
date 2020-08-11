@@ -287,7 +287,11 @@ byday <- aggregate(cbind(YOURVARIABLENAME)~Date, data=data,FUN=sum)
 library(lubridate)
 byday$Month <- floor_date(byday$YOURVARIABLENAME, "month") # Get dates into month bins (requires lubridate)
 ```
+Alternatively:
 
+```r
+data <- aggregate(data[ ,3], FUN="sum", by=list(as.Date(data$Date, "%Y-%m-%d"))) # col 3 is the Result to be summed
+```
 ### Create a Dataframe of Dates
 
 ```r
