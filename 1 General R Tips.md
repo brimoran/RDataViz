@@ -187,6 +187,11 @@ Similarly:
 ```r
 data <- data[!(is.na(data$YOURVARIABLENAME) | data$YOURVARIABLENAME=="-"), ] # strip out records that include NA fields or  just a "-"
 ```
+And:
+
+```r
+data[data == 0] <- NA # replace 0 with NA
+```
 
 Or to remove entire blank rows:
 
