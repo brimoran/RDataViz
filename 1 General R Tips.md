@@ -372,6 +372,31 @@ To stack one dataframe on top of another, make sure that the number of columns a
 merged <- rbind(DATAFRAME1, DATAFRAME2)
 ```
 
+## Other useful operations
+
+### Select first or last number
+
+```r
+as.numeric(tail(data$YOURVARIABLE,1))
+```
+Use ```head``` to select first.
+
+### Rolling sum
+
+```r
+rollsumr(data$YOURVARIABLE, k = 6, fill = NA)# sum six rows
+```
+
+### Combine text and variables
+
+e.g. making a caption:
+
+```r
+caption <-paste("YOURTEXTHERE",YOURVARIABLE, " ", ANOTHERVARIABLE, " MORETEXT.","\nMORETEXT",sep = "")
+```
+
+Note ```\n``` is used to more the text onto a new line.
+
 ## Exporting to csv
 
 ```write.csv(data, file = "FILENAME.csv")```
@@ -383,12 +408,13 @@ merged <- rbind(DATAFRAME1, DATAFRAME2)
 
 One of the big advantages of using R to produce dataviz is the consistency that can be achieved from one plot to the next.
 
-I would suggest using two (and only two) aspect ratios depending on the plot and the context in which it will be viewed:
+I would suggest using three aspect ratios depending on the plot and the context in which it will be viewed:
 
-* 16:9
+* 16:10
 * 4:3
+* square
 
-A 16:9 aspect ratio tends to work well for plots to be included within a document and also for presentations.
+A 16:10 aspect ratio tends to work well for plots to be included within a document and also for presentations.
 
 A 4:3 aspect ratio works well for plots that will be viewed full-screen on a tablet which is common in a corporate setting.
 
