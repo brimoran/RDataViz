@@ -4,7 +4,7 @@ This section is not intended to provide a comprehensive primer for R.  Rather it
 
 ## Working directory
 
-For simplicity, I would suggest keeping your R scripts and data sources in the same directory.  If you do, the following code can be used right at the start of your scripts to set your working directory to the location of the R script.  This will help ensure that your work is easily portable for others:
+For small projects, I would suggest keeping your R scripts and data sources in the same directory.  If you do, the following code can be used right at the start of your scripts to set your working directory to the location of the R script.  This will help ensure that your work is easily portable for others:
 
 ```r
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path)) # set working directory
