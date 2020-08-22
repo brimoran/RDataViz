@@ -50,6 +50,22 @@ To replace this with your own csv data, comment out or delete the existing line 
 data <- read.csv("YOURFILENAME.csv",header=TRUE, sep = ',') # Read csv file, change YOURFILENAME
 ```
 
+## Loading lots of csvs at once
+
+```r
+# Read files names in csv folder
+filenames <- list.files(path="./data/csv/", pattern="*.*csv")# assumes files are in the specified folder
+
+# Create list of dataframe names without the ".csv" file extension 
+names <-gsub('.{4}$', '', filenames) # deletes last four characters
+
+# Load all files as dataframes
+for(i in names){
+  filepath <- file.path("./data/csv/",paste(i,".csv",sep=""))
+  assign(i, read.delim(filepath, sep = "," ,na.strings='NULL'))
+}
+```
+
 ## Checking the structure of data
 
 In R Studio you can easily view data through the GUI.  Sometimes it is more convenient to use the following command instead however:
