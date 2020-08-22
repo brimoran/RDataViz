@@ -118,46 +118,20 @@ data <- stack(data) # transform separate columns into a single vector with two c
 
 Files sourced in a corporate environment are often messy.
 
-By defining and using a clean function we can make sure that numeric csv data is cleansed of common extraneous characters (commas, pound signs etc.) that would cause problems with analysis in R:
+We will need to make sure that numeric csv data is cleansed of common extraneous characters (commas, pound signs etc.) that would cause problems with analysis in R.
+
+#### Using gsub
+
+One approach is to use gsub which replaces all matches of a particular character (string).  For example to remove pound signs:
 
 ```r
-clean <- function(ttt){
-as.numeric( gsub('[^a-zA-Z0-9.]', '', ttt))
-}
-```
-
-Example from code published at: http://earlh.com/blog/2009/06/29/cleaning-data-in-r-csv-files/
-
-To apply to the entire data frame of variables (be careful in using this as it will bork any variables in your data frame which you need to be non-numeric):
-
-```r
-data[] <- sapply(data, clean) # Assumes that the clean function has already been created
-```
-
-To apply to a single variable:
-
-```r
-data$YOURVARIABLENAME <- sapply(data$YOURVARIABLENAME, clean) # Assumes that the clean function has already been created, change text in capitals
-```
-
-To apply to specific variables in the data frame:
-
-```r
-data[,c("YOURVARIABLENAME","YOUROTHERVARIABLENAME")] <- sapply(data, clean) # Assumes that the clean function has already been created, change text in capitals
+data$YOURVARIABLENAME <- gsub("£", "", paste(data$YOURVARIABLENAME)) # remove £
 ```
 
 #### Trim white space
 
 ```r
 data < - trimws(data, which = c("both")) # trims white space either side of string
-```
-
-#### Using gsub
-
-An alternative approach is to use gsub which replaces all matches of a particular character (string).  For example to remove pound signs:
-
-```r
-data$YOURVARIABLENAME <- gsub("£", "", paste(data$YOURVARIABLENAME)) # remove £
 ```
 
 #### Creating a dummy variable
