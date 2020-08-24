@@ -49,9 +49,29 @@ To replace this with your own csv data, comment out or delete the existing line 
 # data <- women # load in-built dataset - commented out
 data <- read.csv("YOURFILENAME.csv",header=TRUE, sep = ',') # Read csv file, change YOURFILENAME
 ```
+## Create an empty data frame
+
+```r
+TOTALhourly <- data.frame(Number=integer(),
+                 Position=character(),
+                 Hourly.Rate=numeric(),
+                 Gender=factor(),
+                 X=logical(),
+                 X=logical(),
+                 X=logical(),
+                 X=logical(),
+                 X=logical(),
+                 X=logical(),
+                 X=logical(),
+                 X=logical(),
+                 X=logical(),
+                 X=logical(),
+                 stringsAsFactors=FALSE)
+```
 
 ## Loading lots of csvs at once
 
+This loads each csv in a folder into R as a data frame.
 ```r
 # Read files names in csv folder
 filenames <- list.files(path="./data/csv/", pattern="*.*csv")# assumes files are in the specified folder
@@ -65,6 +85,19 @@ for(i in names){
   assign(i, read.delim(filepath, sep = "," ,na.strings='NULL'))
 }
 ```
+
+## Loading lots of csvs into a single data frame
+
+Sometimes you may have many csv files with some sort of common name that you want to combine into a single data frame.
+
+```r
+setwd("./data/csv/")
+temp = list.files(pattern="*Hourly.csv")
+myfiles = lapply(temp, read.delim, sep=",")
+TOTALhourly <- rbindlist (myfiles)
+TOTALhourly <- as.data.frame(TOTALhourly)
+```
+
 
 ## Checking the structure of data
 
