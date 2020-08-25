@@ -94,8 +94,7 @@ Sometimes you may have many csv files with some sort of common name that you wan
 setwd("./data/csv/")
 temp = list.files(pattern="*Hourly.csv")
 myfiles = lapply(temp, read.delim, sep=",")
-TOTALhourly <- rbindlist (myfiles)
-TOTALhourly <- as.data.frame(TOTALhourly)
+TOTALhourly <- do.call(rbind, myfiles)
 ```
 
 
