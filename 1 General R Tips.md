@@ -97,6 +97,11 @@ myfiles = lapply(temp, read.delim, sep=",")
 TOTALhourly <- do.call(rbind, myfiles)
 ```
 
+## Loading an excel file
+
+```r
+data <- read_excel("./data/xlsx/FILE.xlsx") # loads the first sheet by default
+```
 
 ## Checking the structure of data
 
