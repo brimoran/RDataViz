@@ -391,6 +391,12 @@ Nice summary from [Data Science Made Simple](http://www.datasciencemadesimple.co
 - **Left outer join**:To include all the rows of your data frame x and only those from y that match, specify all.x=TRUE.
 - **Right outer join**:To include all the rows of your data frame y and only those from x that match, specify all.y=TRUE.
 
+## Remove cases from one data frame if they are present in the other
+
+```r
+CASESINONEBUTNOTINTWO <- ONE[!ONE$Number %in% TWO$Number,] # remove cases from ONE that are also in TWO
+```
+
 ## Vertical joins (stacking) data frames
 
 To stack one dataframe on top of another, make sure that the number of columns and names are identical and then:
