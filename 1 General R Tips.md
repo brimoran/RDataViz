@@ -168,7 +168,7 @@ data$YOURVARIABLENAME <- gsub("Â£", "", paste(data$YOURVARIABLENAME)) # remove Â
 #### Trim white space
 
 ```r
-data < - trimws(data, which = c("both")) # trims white space either side of string
+data$YOURVARIABLENAME < - trimws(data$YOURVARIABLENAME, "both") # trims white space either side of string
 ```
 
 #### Creating a dummy variable
