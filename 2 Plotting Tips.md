@@ -41,7 +41,7 @@ ggplot(data, aes(x = weight, y = height)) +
   geom_point() + # adding the points
   ggtitle("Average Heights and Weights for American Women") + # adding a title
   geom_text(aes(x=140, y=68, label="My text"), color = "black",
-            size = 5, angle = 45) # adding an annotation # adding an annotation
+            size = 5, angle = 45) # adding an annotation
 ```
 
 Each new line of code that adds a new layer should follow a '+'.
