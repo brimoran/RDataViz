@@ -101,7 +101,7 @@ or from using a dataframe:
 ### Shaded rectangle
 
 ```r
-annotate("rect", xmin = 150, xmax = 160, ymin = 67, ymax = 73, alpha = .1)
+  geom_rect(mapping=aes(xmin=100, xmax=110, ymin=0, ymax=12), alpha=.1)
 ```
 
 ### Fitted linear line
