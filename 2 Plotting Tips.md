@@ -40,7 +40,7 @@ data <- women # load data
 ggplot(data, aes(x = weight, y = height)) +
   geom_point() + # adding the points
   ggtitle("Average Heights and Weights for American Women") + # adding a title
-  annotate("text", label="Median\nweight", x=median(data$weight), y=60, size=3)  # adding an annotation
+  geom_text(data=annotation, aes( x=x, y=y, label=label), color="#ffa4a2", size=3) + # adding an annotation - note this requires a dataframe called annotation
 ```
 
 Each new line of code that adds a new layer should follow a '+'.
@@ -87,7 +87,7 @@ geom_hline(yintercept = median(data$height), linetype="dotted")
 ### Text annotation
 
 ```r
-annotate("text", label="Median height", x=120, y=median(data$height), size=3) + # adding an annotation
+  geom_text(data=annotation.total, aes( x=x, y=y, label=label), color="#ffa4a2", size=3) + # adding an annotation
 ```
 
 ### Shaded rectangle
