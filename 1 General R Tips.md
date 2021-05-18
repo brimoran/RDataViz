@@ -15,6 +15,13 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path)) # set working direct
 ```r
 install.packages("rstudioapi") # Assumes that repository has already been set in R Studio
 ```
+An alternative that is more portable between say a Linux server and Mac:
+
+```r
+# Set working directory to script location
+library(this.path)
+setwd(this.path::this.dir())
+```
 
 ## Installing and loading libraries
 
@@ -261,6 +268,16 @@ data$Member <- factor(data$YOURVARIABLENAME) # ...restore correct levels
 
 ```r
 names(data)[names(data) == 'YOUROLDNAME'] <- 'YOURNEWNAME'
+```
+
+## Using the first row as column headings (variable names)
+
+```r
+# tidying so that first row is the heading
+data <- data[-1, ] # remove row so correct header row is now in row 1
+names(data) <- as.matrix(data[1, ])
+data <- data[-1, ]
+data[] <- lapply(data, function(x) type.convert(as.character(x)))
 ```
 
 ## Change levels/labels in factor
