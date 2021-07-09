@@ -166,10 +166,14 @@ We will need to make sure that numeric csv data is cleansed of common extraneous
 
 #### Using gsub
 
-One approach is to use gsub which replaces all matches of a particular character (string).  For example to remove pound signs:
+One approach is to use gsub which replaces all matches of a particular character (string).  Examples:
 
 ```r
-data$YOURVARIABLENAME <- gsub("£", "", paste(data$YOURVARIABLENAME)) # remove £
+data$'YOUR VARIABLE NAME' <- gsub(",", "", paste(data$'YOUR VARIABLE NAME')) # remove "," in a specific variable
+```
+
+```r
+data[] <- lapply(data, gsub, pattern=',', replacement='') # remove "," throughout dataframe
 ```
 
 #### Trim white space
