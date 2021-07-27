@@ -441,6 +441,14 @@ Use ```head``` to select first.
 rollsumr(data$YOURVARIABLE, k = 6, fill = NA)# sum six rows
 ```
 
+### Sum to weekly
+
+```r
+data <- as.xts(data$value,order.by=as.Date(data$Date)) # requires xts package
+weekly <- apply.weekly(data,sum) # sum to weekly 
+weekly <- data.frame(Date=index(weekly), coredata(weekly)) # convert xts to dataframe
+```
+
 ### Combine text and variables
 
 e.g. making a caption:
