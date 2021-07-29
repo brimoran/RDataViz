@@ -188,6 +188,12 @@ data$YOURVARIABLENAME < - trimws(data$YOURVARIABLENAME, "both") # trims white sp
 data$DUMMYVARIABLE <- as.numeric(data$COLUMNNAME == "CONDITION")
 ```
 
+#### Adding a column of 1s
+
+```r
+data$count <- rep(1,nrow(data)) # make new column of 1s
+```
+
 #### Changing a single value
 
 ```r
