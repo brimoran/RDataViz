@@ -107,7 +107,7 @@ TOTALhourly <- do.call(rbind, myfiles)
 ## Loading an excel file
 
 ```r
-data <- read_excel("./data/xlsx/FILE.xlsx") # loads the first sheet by default
+data <- read_excel("./data/xlsx/FILE.xlsx") # loads the first sheet by default, requires readxl library
 ```
 
 ## Checking the structure of data
