@@ -333,6 +333,16 @@ data$YOURVARIABLENAME <- as.Date(data$YOURVARIABLENAME, "%Y-%m-%d") # transform 
 
 Note the substitution of '/' with '-' in this example.
 
+### Lubridate
+
+Perhaops an easier alternative is to use the lubridate library which can deal with a wide format of dates.  For example:
+
+```r
+data$Date <- dmy(data$Date) # requires lubridate
+```
+
+This for me dealt with data that contained th, st, rd and nd suffixes to the dates.  Alternate options are available such as ```mdy_hm```.
+
 ### Order by Date
 
 ```r
