@@ -140,7 +140,7 @@ This example is a common case where data is sourced with a single Date column wi
 ```r
 # reshape data from wide to long format
 library("reshape2")  
-data <- melt(data, id.vars = c("Date"))
+data <- reshape2::melt(data, id.vars = c("Date"))
 ```
 
 ## Changing the order of data
