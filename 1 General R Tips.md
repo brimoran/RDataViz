@@ -333,6 +333,13 @@ data$YOURVARIABLENAME <- as.Date(data$YOURVARIABLENAME, "%Y-%m-%d") # transform 
 
 Note the substitution of '/' with '-' in this example.
 
+If you just have a year but want to treat it as a date:
+
+```r
+data <- transform(data,
+                  Year = as.Date(paste(Year,"-01-01",sep=""))) # adding month and day to Year so can use as date
+```r
+
 ### Lubridate
 
 Perhaops an easier alternative is to use the lubridate library which can deal with a wide format of dates.  For example:
