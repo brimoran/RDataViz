@@ -182,6 +182,17 @@ data[] <- lapply(data, gsub, pattern=',', replacement='') # remove "," throughou
 data$YOURVARIABLENAME < - trimws(data$YOURVARIABLENAME, "both") # trims white space either side of string
 ```
 
+#### Create a new field with values of other fields
+```r
+library(dplyr)
+
+# create labels based on the values of other fields (requires dplyr)
+data <- data %>%
+  mutate(NEWFIELD = case_when(FIELD1 > 0 ~ "LABEL1",
+                                FIELD2 > 0  ~ "LABEL2"))
+data$Type <- as.factor(data$NEWFIELD)
+```
+
 #### Creating a dummy variable
 
 ```r
