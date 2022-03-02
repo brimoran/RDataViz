@@ -145,6 +145,16 @@ data <- reshape2::melt(data, id.vars = c("Date"))
 
 ## Changing the order of data
 
+```r
+data <- data[order(data$YOURVARIABLENAME), ] # order data
+```
+
+find position in order:
+
+```r
+which(data$YOURVARIABLENAME=="LABEL") # find position
+```
+
 Use this to change the order that variables will be shown in charting:
 
 ```r
