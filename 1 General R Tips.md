@@ -472,11 +472,36 @@ merged <- rbind(DATAFRAME1, DATAFRAME2)
 
 ## Other useful operations
 
-### summarise mean values by category
+### Summarising
 
-aggregate(data$YOURVALUE, list(data$YOURCATEGORY), FUN=mean) 
+Simple table of counts:
 
-### Select first or last number
+```r
+table(data$YOURCATEGORICAL)
+```
+
+Getting count and percent by category using dplyr and formattable:
+```r
+g <- data %>%
+  na.omit() %>%
+  group_by(YOURCATEGORICAL) %>%
+  summarise(cnt = n()) %>%
+  mutate(freq = formattable::percent(cnt / sum(cnt))) %>% 
+  arrange(desc(freq))
+head(as.data.frame(g))
+```
+
+Getting the mean value for each category:
+```r
+aggregate(data$YOURVALUE, list(data$YOURCATEGORICAL), FUN=mean) 
+```
+
+Alternatively using dplyr:
+```r
+data %>%
+  group_by(YOURCATEGORY) %>%
+  summarise_at(vars(YOURVALUE), list(name = mean))
+```
 
 ```r
 as.numeric(tail(data$YOURVARIABLE,1))
