@@ -472,6 +472,10 @@ merged <- rbind(DATAFRAME1, DATAFRAME2)
 
 ## Other useful operations
 
+### summarise mean values by category
+
+aggregate(data$YOURVALUE, list(data$YOURCATEGORY), FUN=mean) 
+
 ### Select first or last number
 
 ```r
