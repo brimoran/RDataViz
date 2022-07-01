@@ -484,22 +484,31 @@ Getting count and percent by category using dplyr and formattable:
 ```r
 g <- data %>%
   na.omit() %>%
-  group_by(YOURCATEGORICAL) %>%
+  group_by(YOURFACTOR) %>%
   summarise(cnt = n()) %>%
   mutate(freq = formattable::percent(cnt / sum(cnt))) %>% 
   arrange(desc(freq))
 head(as.data.frame(g))
 ```
 
+Filter and summarise combinations of two factors (assuming there is a count field of 1s)
+
+```r
+data %>%
+  filter(YOURFACTOR1 == "A" | YOURFACTOR1 == "B") %>%
+  group_by( YOURFACTOR2, YOURFACTOR1 ) %>% summarise( count = sum(count) )
+```
+
+
 Getting the mean value for each category:
 ```r
-aggregate(data$YOURVALUE, list(data$YOURCATEGORICAL), FUN=mean) 
+aggregate(data$YOURVALUE, list(data$YOURFACTOR), FUN=mean) 
 ```
 
 Alternatively using dplyr:
 ```r
 data %>%
-  group_by(YOURCATEGORY) %>%
+  group_by(YOURFACTOR) %>%
   summarise_at(vars(YOURVALUE), list(name = mean))
 ```
 
