@@ -499,6 +499,13 @@ data %>%
   group_by( YOURFACTOR2, YOURFACTOR1 ) %>% summarise( count = sum(count) )
 ```
 
+real example:
+
+```r
+AFR_by_EPC <- merged %>%
+  filter(EPC == "D" | EPC == "E" | EPC == "F" | EPC == "G") %>%
+  group_by( `Main Rent Element`, EPC ) %>% summarise( count = sum(AFR, na.rm = TRUE) )
+```
 
 Getting the mean value for each category:
 ```r
