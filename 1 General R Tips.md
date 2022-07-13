@@ -434,6 +434,13 @@ You can use Grep to subset on particular patterns of characters in your data.  T
 subsetdata <- data[!grepl("this text",data$YOURVARIABLENAME),] # remove case with "this text" in YOURVARIABLE NAME
 ```
 
+or for partial match:
+
+```r
+grep_result <- grep( ("Your search term"),data$YOURVARIABLENAME, value = T) # to find variants of company name
+which(data$YOURVARIABLENAME==grep_result) # confirm position in data
+data$flag <- ifelse(data$YOURVARIABLENAME==grep_result, "Y", "N") # and flag it
+```
 ### Duplicates
 
 You can subset to remove duplicates in your data frame as follows:
@@ -551,6 +558,16 @@ Note ```\n``` is used to more the text onto a new line.
 ## Exporting to csv
 
 ```write.csv(data, file = "FILENAME.csv")```
+
+## Exporting to Excel
+
+```
+system("touch output.xlsx") # make sure that a file exists to add following sheets to
+
+write.xlsx(data, file="output.xlsx", sheetName="This is my data", row.names=FALSE, password="password01")
+write.xlsx(data2, file="output.xlsx", sheetName="This is data 2 added as a second sheet", append=TRUE, row.names=FALSE, password="password01")
+```
+
 
 ## Exporting plots
 
