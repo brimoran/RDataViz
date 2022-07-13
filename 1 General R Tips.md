@@ -191,6 +191,11 @@ data[] <- lapply(data, gsub, pattern=',', replacement='') # remove "," throughou
 ```r
 data$YOURVARIABLENAME < - trimws(data$YOURVARIABLENAME, "both") # trims white space either side of string
 ```
+or for whole data frame:
+
+```r
+data <- data.frame(lapply(data, trimws), stringsAsFactors = FALSE) # remove white space
+```
 
 #### Create a new field with values of other fields
 ```r
