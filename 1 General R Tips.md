@@ -1,26 +1,21 @@
 # R tips
 
-This section is not intended to provide a comprehensive primer for R.  Rather it is a collection of the useful tips that the data viz examples use.  It is also an opportunity for me to explain why they are used.
+This section is not intended to provide a comprehensive primer for R.  Rather it is a collection of useful tips.
 
 ## Working directory
 
-For small projects, I would suggest keeping your R scripts and data sources in the same directory.  If you do, the following code can be used right at the start of your scripts to set your working directory to the location of the R script.  This will help ensure that your work is easily portable for others:
+I would suggest keeping your data sources in the same directory as you R script or in a relative path from it.
+
+For R Studio users who don't need to run scripts on different platforms, the following will suffice:
 
 ```r
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path)) # set working directory
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path)) # set working directory, requires rstudioapi package
 ```
 
-*Note*: this requires R studio to be used and the rstudioapi package to have been previously installed.  The rstudioapi package is installed just like any other package in R:
-
-```r
-install.packages("rstudioapi") # Assumes that repository has already been set in R Studio
-```
 An alternative that is more portable between say a Linux server and Mac:
 
 ```r
-# Set working directory to script location
-library(this.path)
-setwd(this.path::this.dir())
+setwd(this.path::this.dir()) # # Set working directory to script location, requires this.path package
 ```
 
 ## Installing and loading libraries
@@ -40,26 +35,71 @@ Example from code published by Daniel Sparing at https://stackoverflow.com/quest
 
 In this case ggplot2, ggthemes, ggmap and scales will be loaded, or installed and then loaded if not already present.
 
-## Loading data
+## Getting data into data frames
 
-The examples given here either provide dummy data within the R script or use R's in-built datasets to ensure reproducibility.
+### In-built data sets
 
-Each example loads a dataset as data frame  "data".  For example:
-
+R datasets:
 ```r
 data <- women # load in-built dataset
 ```
 
-To replace this with your own csv data, comment out or delete the existing line that creates the data frame "data" and use the following code instead:
+### csvs
+
+Single csv:
 
 ```r
 # data <- women # load in-built dataset - commented out
 data <- read.csv("YOURFILENAME.csv",header=TRUE, sep = ',') # Read csv file, change YOURFILENAME
 ```
-## Create an empty data frame
+
+This loads into R lots of csvs at once as a data frame if stored in the same directory:
 
 ```r
-TOTALhourly <- data.frame(Number=integer(),
+# Read files names in csv folder
+filenames <- list.files(path="./data/csv/", pattern="*.*csv")# assumes files are in the specified folder
+
+# Create list of dataframe names without the ".csv" file extension 
+names <-gsub('.{4}$', '', filenames) # deletes last four characters
+
+# Load all files as dataframes
+for(i in names){
+  filepath <- file.path("./data/csv/",paste(i,".csv",sep=""))
+  assign(i, read.delim(filepath, sep = "," ,na.strings='NULL'))
+}
+```
+
+Sometimes you may have many csv files with some sort of common name that you want to combine into a single data frame:
+
+```r
+setwd("./data/csv/")
+temp = list.files(pattern="*COMMON_NAME_HERE.csv")
+myfiles = lapply(temp, read.delim, sep=",")
+data <- do.call(rbind, myfiles)
+```
+
+Dealing with encoding errors:
+
+```r
+data <- read.csv("All Stock.csv",fileEncoding="latin1", header=TRUE) # Read csv file encoded as latin1 
+```
+
+### Excel
+
+```r
+data <- read_excel("./data/xlsx/FILE.xlsx") # loads the first sheet by default, requires readxl library
+```
+
+Specify a sheet:
+
+```r
+data <- read_excel("YOUR_FILE.xlsx", sheet = "YOUR_SHEET") # requires readxl library
+```
+
+### Create an empty data frame
+
+```r
+data <- data.frame(Number=integer(),
                  Position=character(),
                  Hourly.Rate=numeric(),
                  Gender=factor(),
@@ -76,39 +116,7 @@ TOTALhourly <- data.frame(Number=integer(),
                  stringsAsFactors=FALSE)
 ```
 
-## Loading lots of csvs at once
 
-This loads each csv in a folder into R as a data frame.
-```r
-# Read files names in csv folder
-filenames <- list.files(path="./data/csv/", pattern="*.*csv")# assumes files are in the specified folder
-
-# Create list of dataframe names without the ".csv" file extension 
-names <-gsub('.{4}$', '', filenames) # deletes last four characters
-
-# Load all files as dataframes
-for(i in names){
-  filepath <- file.path("./data/csv/",paste(i,".csv",sep=""))
-  assign(i, read.delim(filepath, sep = "," ,na.strings='NULL'))
-}
-```
-
-## Loading lots of csvs into a single data frame
-
-Sometimes you may have many csv files with some sort of common name that you want to combine into a single data frame.
-
-```r
-setwd("./data/csv/")
-temp = list.files(pattern="*Hourly.csv")
-myfiles = lapply(temp, read.delim, sep=",")
-TOTALhourly <- do.call(rbind, myfiles)
-```
-
-## Loading an excel file
-
-```r
-data <- read_excel("./data/xlsx/FILE.xlsx") # loads the first sheet by default, requires readxl library
-```
 
 ## Checking the structure of data
 
@@ -174,7 +182,7 @@ Files sourced in a corporate environment are often messy.
 
 We will need to make sure that numeric csv data is cleansed of common extraneous characters (commas, pound signs etc.) that would cause problems with analysis in R.
 
-#### Using gsub
+### Using gsub
 
 One approach is to use gsub which replaces all matches of a particular character (string).  Examples:
 
@@ -186,7 +194,7 @@ data$'YOUR VARIABLE NAME' <- gsub(",", "", paste(data$'YOUR VARIABLE NAME')) # r
 data[] <- lapply(data, gsub, pattern=',', replacement='') # remove "," throughout dataframe
 ```
 
-#### Trim white space
+### Trim white space
 
 ```r
 data$YOURVARIABLENAME < - trimws(data$YOURVARIABLENAME, "both") # trims white space either side of string
@@ -197,7 +205,7 @@ or for whole data frame:
 data <- data.frame(lapply(data, trimws), stringsAsFactors = FALSE) # remove white space
 ```
 
-#### Create a new field with values of other fields
+### Create a new field with values of other fields
 ```r
 library(dplyr)
 
@@ -208,28 +216,35 @@ data <- data %>%
 data$Type <- as.factor(data$NEWFIELD)
 ```
 
-#### Creating a dummy variable
+### Creating a dummy variable
 
 ```r
 data$DUMMYVARIABLE <- as.numeric(data$COLUMNNAME == "CONDITION")
 ```
 
-#### Adding a column of 1s
+### Adding a column of 1s
 
 ```r
 data$count <- rep(1,nrow(data)) # make new column of 1s
 ```
 
-#### Changing a single value
+### Changing a single value
 
 ```r
 data[ROWNUMBER, COLUMNNUMBER] = NEWVALUE # changing a single value - row then column
 ```
 
-#### Limiting data to a few columns of interest
+### Limiting data to a few columns of interest
 
 ```r
-data <- data[,c("YOURVARIABLENAME","YOUROTHERVARIABLENAME")]
+data <- data[,c("YOUR_VARIABLENAME","YOUR_OTHER_VARIABLENAME")]
+```
+
+Or a more readble option:
+
+```r
+data <- data[ , names(data) %in% c("YOUR_VARIABLENAME", "YOUR_OTHER_VARIABLENAME")] # select columns of interest
+
 ```
 
 Alternatively, specify the columns you want to remove:
@@ -238,7 +253,8 @@ Alternatively, specify the columns you want to remove:
 data <- data[, -c(0:2)] # Drop first two columns
 ```
 
-#### Removing incomplete data
+
+### Removing incomplete data
 
 Removing rows of incomplete data is not necessary for plotting but is required for some analysis you may need to undertake prior to plotting.  Only use if incomplete data is causing problems in your workflow:
 
@@ -300,13 +316,13 @@ data <- data[!(data$YOURVARIABLENAMEr=="The value you don't want"),]# this is a 
 data$Member <- factor(data$YOURVARIABLENAME) # ...restore correct levels
 ```
 
-## Tidy column headings (variable names)
+### Tidy column headings (variable names)
 
 ```r
 names(data)[names(data) == 'YOUROLDNAME'] <- 'YOURNEWNAME'
 ```
 
-## Using the first row as column headings (variable names)
+### Using the first row as column headings (variable names)
 
 ```r
 # tidying so that first row is the heading
@@ -316,14 +332,14 @@ data <- data[-1, ]
 data[] <- lapply(data, function(x) type.convert(as.character(x)))
 ```
 
-## Change levels/labels in factor
+### Change levels/labels in factor
 
 ```r
 levels(data$Measure)# check existing levels
 data$Measure <- revalue(data$YOURVARIABLENAME, c("old name"="new name")) # rename factor level requires library("plyr")
 ```
 
-## Converting data recognised as a character format into a numeric format
+### Converting data recognised as a character format into a numeric format
 
 If your 'numeric' data is messy and contains characters such as '£'s, ','s or 'm's for example, R will recognise this in a character format.  Chances are you will need it to be recognised as numeric, so after you clean it you will need to convert it to numeric data:
 
@@ -339,7 +355,15 @@ data[] <- lapply(data, as.numeric) # make entire dataframe numeric
 
 ## Working with dates
 
-You need to be explicit about date formats in R.  Use as.Date to tell R to change a field in your data frame to a particular date format. 
+You need to be explicit about date formats in R.  Use as.Date to tell R to change a field in your data frame to a particular date format.
+
+### POSIXlt warnings
+
+A problem I sometimes run into on MacOS, correct with:
+
+```r
+Sys.setenv(TZ="GB") # need to use an option from /usr/share/zoneinfo/zone.tab
+```
 
 ### DMY
 
@@ -410,7 +434,11 @@ We are producing data viz for business here and so it is useful to suppress scie
 options(scipen=999) # supress scientific notation
 ```
 
-With scientific notation suppressed, the number one million will be shown by R as 1000000.  We will need to use a further line of code in our plots to also show comma separators.
+With scientific notation suppressed, the number one million will be shown by R as 1000000.  We will need to use a further line of code in our plots to also show comma separators:
+
+```r
+  scale_y_continuous(labels = comma) + # To use within a ggplot block
+```
 
 ## Subsetting data
 
@@ -419,13 +447,14 @@ Subsetting can be easily achieved in R by using the "subset" command.  Use norma
 ```r
 subsetdata <- subset(data, YOURVARIABLENAME != "YOURCHARACTERVALUE" &  YOUROTHERVARIABLENAME > YOURNUMERICVALUE) # subset the data
 ```
+
 Alternatively, and [prefered](https://stackoverflow.com/questions/9860090/why-is-better-than-subset):
 
 ```r
 subsetdata <- data[data$YOURVARIABLENAME != "YOURCHARACTERVALUE" & data$YOUROTHERVARIABLENAME > YOURNUMERICVALUE, ]
 ```
 
-Note, if after subsetting your levels of factors has (should have) reduced, correct stored levels in R with:
+Note, if after subsetting your levels of factors has reduced, correct stored levels in R with:
 
 ```r
 subsetdata$YOURVARIABLENAME <- factor(subsetdata$YOURVARIABLENAME)
@@ -446,6 +475,7 @@ grep_result <- grep( ("Your search term"),data$YOURVARIABLENAME, value = T) # to
 which(data$YOURVARIABLENAME==grep_result) # confirm position in data
 data$flag <- ifelse(data$YOURVARIABLENAME==grep_result, "Y", "N") # and flag it
 ```
+
 ### Duplicates
 
 You can subset to remove duplicates in your data frame as follows:
@@ -480,6 +510,24 @@ To stack one dataframe on top of another, make sure that the number of columns a
 
 ```r
 merged <- rbind(DATAFRAME1, DATAFRAME2)
+```
+
+## Fuzzy join
+
+```r
+library(fuzzyjoin)
+testfuzz <- stringdist_join(data1, data2, 
+                by='Name', # matching field
+                mode='left', # using left join
+                method = "jw", # using jw distance metric
+                max_dist=99, 
+                distance_col='dist') %>%
+  group_by(Name.x) %>%
+  slice_min(order_by=dist, n=1)
+
+check_fuzz <- testfuzz[ , names(testfuzz) %in% c("Name.x", "Name.y", "dist")]
+
+sum(check_fuzz$dist > 0.33) # > 0.33 distance likely to be dodgy
 ```
 
 ## Other useful operations
